@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navHomeFragment">
+    <fragment
+        android:id="@+id/navHomeFragment"
+        android:name="com.josedo.bodymeasurecontrol.HomeFragment"
+        android:label="fragment_home_dialog_detail"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeDialogFragmentDetail_to_chartFragment"
+            app:destination="@id/navChartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/navChartFragment"
+        android:name="com.josedo.bodymeasurecontrol.ChartFragment"
+        android:label="fragment_chart"
+        tools:layout="@layout/fragment_chart" >
+        <action
+            android:id="@+id/action_chartFragment_to_measuresFragment"
+            app:destination="@id/navMeasuresFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/navMeasuresFragment"
+        android:name="com.josedo.bodymeasurecontrol.MeasuresFragment"
+        android:label="fragment_measures"
+        tools:layout="@layout/fragment_measures" >
+        <action
+            android:id="@+id/action_navMeasuresFragment_to_measuresDetailsDialogFragment"
+            app:destination="@id/measuresDetailsDialogFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/measuresDetailsDialogFragment"
+        android:name="com.josedo.bodymeasurecontrol.MeasuresDetailsDialogFragment"
+        android:label="MeasuresDetailsDialogFragment" />
+
+</navigation>

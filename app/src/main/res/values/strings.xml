@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">BodyMeasureControl</string>
+    <string name="weight">Peso</string>
+    <string name="chest">Pecho</string>
+    <string name="abdomen">Abdomen</string>
+    <string name="waist">Cadera</string>
+    <string name="biceps">Biceps</string>
+    <string name="leg">Pierna</string>
+    <string name="date">Fecha</string>
+    <string name="addMeasurement">Añadir</string>
+    <string name="modifyMeasurement">Modificar</string>
+    <string name="findMeasurement">Buscar por fecha</string>
+    <string name="chart_title">Gráficas</string>
+    <string name="data_title">Datos</string>
+</resources>
