@@ -1,9 +1,10 @@
-package com.josedo.bodymeasurecontrol
+package com.josedo.bodymeasurecontrol.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
+import com.josedo.bodymeasurecontrol.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +18,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun configNav() {
-        NavigationUI.setupWithNavController(bnvMenu, Navigation.findNavController(this, R.id.fragContent))
+        NavigationUI.setupWithNavController(bnvMenu, Navigation.findNavController(this,
+            R.id.fragContent
+        ))
     }
 }

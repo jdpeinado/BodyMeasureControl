@@ -6,7 +6,7 @@
     app:startDestination="@id/navHomeFragment">
     <fragment
         android:id="@+id/navHomeFragment"
-        android:name="com.josedo.bodymeasurecontrol.HomeFragment"
+        android:name="com.josedo.bodymeasurecontrol.view.fragment.HomeFragment"
         android:label="fragment_home_dialog_detail"
         tools:layout="@layout/fragment_home" >
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/navChartFragment"
-        android:name="com.josedo.bodymeasurecontrol.ChartFragment"
+        android:name="com.josedo.bodymeasurecontrol.view.fragment.ChartFragment"
         android:label="fragment_chart"
         tools:layout="@layout/fragment_chart" >
         <action
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/navMeasuresFragment"
-        android:name="com.josedo.bodymeasurecontrol.MeasuresFragment"
+        android:name="com.josedo.bodymeasurecontrol.view.fragment.MeasuresFragment"
         android:label="fragment_measures"
         tools:layout="@layout/fragment_measures" >
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <dialog
         android:id="@+id/measuresDetailsDialogFragment"
-        android:name="com.josedo.bodymeasurecontrol.MeasuresDetailsDialogFragment"
+        android:name="com.josedo.bodymeasurecontrol.view.fragment.MeasuresDetailsDialogFragment"
         android:label="MeasuresDetailsDialogFragment" />
 
 </navigation>

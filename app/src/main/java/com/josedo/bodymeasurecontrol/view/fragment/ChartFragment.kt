@@ -1,4 +1,4 @@
-package com.josedo.bodymeasurecontrol
+package com.josedo.bodymeasurecontrol.view.fragment
 
 import android.graphics.Color
 import android.os.Bundle
@@ -11,6 +11,7 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.utils.ColorTemplate
+import com.josedo.bodymeasurecontrol.R
 import kotlinx.android.synthetic.main.fragment_chart.*
 
 
