@@ -26,22 +26,22 @@ class EntryMeasure(
     var systemUnit: UnitMeasure,
 
     @ColumnInfo(name = "chest_value")
-    var chestValue: Float,
+    var chestValue: Double,
 
     @ColumnInfo(name = "waist_value")
-    var waistValue: Float,
+    var waistValue: Double,
 
     @ColumnInfo(name = "hip_value")
-    var hipValue: Float,
+    var hipValue: Double,
 
     @ColumnInfo(name = "leg_value")
-    var legValue: Float,
+    var legValue: Double,
 
     @ColumnInfo(name = "bicep_value")
-    var bicepValue: Float,
+    var bicepValue: Double,
 
     @ColumnInfo(name = "bodyWeight_value")
-    var bodyWeightValue: Float
+    var bodyWeightValue: Double
 
 ): Serializable{
     companion object {

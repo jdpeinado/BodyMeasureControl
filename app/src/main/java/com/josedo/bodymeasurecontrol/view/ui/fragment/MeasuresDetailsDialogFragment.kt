@@ -14,9 +14,11 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.josedo.bodymeasurecontrol.R
 import com.josedo.bodymeasurecontrol.model.EntryMeasure
+import com.josedo.bodymeasurecontrol.util.Utils
 import com.josedo.bodymeasurecontrol.viewmodel.ShareViewModel
 import kotlinx.android.synthetic.main.fragment_measures_details_dialog.*
 import java.text.SimpleDateFormat
+import kotlin.math.round
 
 
 /**
@@ -78,11 +80,11 @@ class MeasuresDetailsDialogFragment : DialogFragment() {
 
     }
 
-    private fun setBackgroundColor(difference: Float, view: View){
+    private fun setBackgroundColor(difference: Double, view: View){
         when{
-            (difference==0f) -> view.background = context!!.getDrawable(R.drawable.shape_measurement_blue)
-            (difference>0f) -> view.background = context!!.getDrawable(R.drawable.shape_measurement_red)
-            (difference<0f) -> view.background = context!!.getDrawable(R.drawable.shape_measurement_green)
+            (difference==0.0) -> view.background = context!!.getDrawable(R.drawable.shape_measurement_blue)
+            (difference>0.0) -> view.background = context!!.getDrawable(R.drawable.shape_measurement_red)
+            (difference<0.0) -> view.background = context!!.getDrawable(R.drawable.shape_measurement_green)
         }
     }
 
@@ -96,39 +98,39 @@ class MeasuresDetailsDialogFragment : DialogFragment() {
         tvDateMeas.text = simpleDateFormat.format(entryMeasure!!.dateMeasure)
 
         tvMeasurementValue.text = entryMeasure.bodyWeightValue.toString() + entryMeasure.systemUnit.getWeightFormat(context!!)
-        var difference:Float = entryMeasure.bodyWeightValue - entryMeasureBefore!!.bodyWeightValue
-        var v = if(difference>=0f) "+" else "-"
-        tvMeasurementDifference.text = v + difference.toString() + entryMeasure.systemUnit.getWeightFormat(context!!)
+        var difference:Double = entryMeasure.bodyWeightValue - entryMeasureBefore!!.bodyWeightValue
+        var v = if(difference>=0.0) "+" else ""
+        tvMeasurementDifference.text = v + Utils.getRoundNumberDecimal(difference).toString() + entryMeasure.systemUnit.getWeightFormat(context!!)
         setBackgroundColor(difference, tvMeasurementDifference)
 
         tvChestValue.text = entryMeasure.chestValue.toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
         difference = entryMeasure.chestValue - entryMeasureBefore!!.chestValue
-        v = if(difference>=0.0f) "+" else "-"
-        tvChestDifference.text = v + difference.toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
+        v = if(difference>=0.0) "+" else ""
+        tvChestDifference.text = v + Utils.getRoundNumberDecimal(difference).toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
         setBackgroundColor(difference, tvChestDifference)
 
         tvWaistValue.text = entryMeasure.waistValue.toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
         difference = entryMeasure.waistValue - entryMeasureBefore!!.waistValue
-        v = if(difference>=0.0f) "+" else "-"
-        tvWaistDifference.text = v + difference.toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
+        v = if(difference>=0.0) "+" else ""
+        tvWaistDifference.text = v + Utils.getRoundNumberDecimal(difference).toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
         setBackgroundColor(difference, tvWaistDifference)
 
         tvHipValue.text = entryMeasure.hipValue.toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
         difference = entryMeasure.hipValue - entryMeasureBefore!!.hipValue
-        v = if(difference>=0.0f) "+" else "-"
-        tvHipDifference.text = v + difference.toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
+        v = if(difference>=0.0) "+" else ""
+        tvHipDifference.text = v + Utils.getRoundNumberDecimal(difference).toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
         setBackgroundColor(difference, tvHipDifference)
 
         tvBicepValue.text = entryMeasure.bicepValue.toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
         difference = entryMeasure.bicepValue - entryMeasureBefore!!.bicepValue
-        v = if(difference>=0.0f) "+" else "-"
-        tvBicepDifference.text = v + difference.toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
+        v = if(difference>=0.0) "+" else ""
+        tvBicepDifference.text = v + Utils.getRoundNumberDecimal(difference).toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
         setBackgroundColor(difference, tvBicepDifference)
 
         tvLegValue.text = entryMeasure.legValue.toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
         difference = entryMeasure.legValue - entryMeasureBefore!!.legValue
-        v = if(difference>=0.0f) "+" else "-"
-        tvLegDifference.text = v + difference.toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
+        v = if(difference>=0.0) "+" else ""
+        tvLegDifference.text = v + Utils.getRoundNumberDecimal(difference).toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
         setBackgroundColor(difference, tvLegDifference)
     }
 }

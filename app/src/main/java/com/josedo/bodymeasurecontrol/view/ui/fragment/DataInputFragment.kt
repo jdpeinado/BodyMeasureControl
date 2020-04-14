@@ -67,8 +67,8 @@ class DataInputFragment : DialogFragment() {
                 tietLeg.setText("")
             } else {
 
-                if (entryMeasure.bodyWeightValue == 0f && entryMeasure.chestValue == 0f && entryMeasure.waistValue == 0f && entryMeasure.hipValue == 0f
-                    && entryMeasure.bicepValue == 0f && entryMeasure.bicepValue == 0f && entryMeasure.legValue == 0f
+                if (entryMeasure.bodyWeightValue == 0.0 && entryMeasure.chestValue == 0.0 && entryMeasure.waistValue == 0.0 && entryMeasure.hipValue == 0.0
+                    && entryMeasure.bicepValue == 0.0 && entryMeasure.bicepValue == 0.0 && entryMeasure.legValue == 0.0
                 ) {
                     tietDate.setText("")
                     tietWeight.setText("")
@@ -165,12 +165,12 @@ class DataInputFragment : DialogFragment() {
                     "",
                     "",
                     UnitMeasure.METRIC,
-                    tietChest.text.toString().toFloat(),
-                    tietWaist.text.toString().toFloat(),
-                    tietHip.text.toString().toFloat(),
-                    tietLeg.text.toString().toFloat(),
-                    tietBicep.text.toString().toFloat(),
-                    tietWeight.text.toString().toFloat()
+                    tietChest.text.toString().toDouble(),
+                    tietWaist.text.toString().toDouble(),
+                    tietHip.text.toString().toDouble(),
+                    tietLeg.text.toString().toDouble(),
+                    tietBicep.text.toString().toDouble(),
+                    tietWeight.text.toString().toDouble()
                 )
                 viewModel.insert(entryMeasure)
                 Toast.makeText(
@@ -189,15 +189,15 @@ class DataInputFragment : DialogFragment() {
 
                 viewModel.entryMeasureToModify.value?.dateMeasure = date
                 viewModel.entryMeasureToModify.value?.chestValue =
-                    tietChest.text.toString().toFloat()
+                    tietChest.text.toString().toDouble()
                 viewModel.entryMeasureToModify.value?.waistValue =
-                    tietWaist.text.toString().toFloat()
-                viewModel.entryMeasureToModify.value?.hipValue = tietHip.text.toString().toFloat()
-                viewModel.entryMeasureToModify.value?.legValue = tietLeg.text.toString().toFloat()
+                    tietWaist.text.toString().toDouble()
+                viewModel.entryMeasureToModify.value?.hipValue = tietHip.text.toString().toDouble()
+                viewModel.entryMeasureToModify.value?.legValue = tietLeg.text.toString().toDouble()
                 viewModel.entryMeasureToModify.value?.bicepValue =
-                    tietBicep.text.toString().toFloat()
+                    tietBicep.text.toString().toDouble()
                 viewModel.entryMeasureToModify.value?.bodyWeightValue =
-                    tietWeight.text.toString().toFloat()
+                    tietWeight.text.toString().toDouble()
                 viewModel.update(viewModel.entryMeasureToModify.value!!)
                 Toast.makeText(
                     this.parentFragment?.context,

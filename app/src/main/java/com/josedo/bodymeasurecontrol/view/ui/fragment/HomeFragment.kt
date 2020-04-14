@@ -10,8 +10,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.josedo.bodymeasurecontrol.R
+import com.josedo.bodymeasurecontrol.util.Utils
 import com.josedo.bodymeasurecontrol.viewmodel.ShareViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
+import java.math.BigDecimal
 import java.text.SimpleDateFormat
 
 /**
@@ -44,15 +46,10 @@ class HomeFragment : Fragment()
 
                 tvDateMeas.text = simpleDateFormat.format(entryMeasure.dateMeasure)
 
-                tvMeasurementValue.text =
-                    entryMeasure.bodyWeightValue.toString() + entryMeasure.systemUnit.getWeightFormat(
-                        context!!
-                    )
-                var difference: Float =
-                    entryMeasure.bodyWeightValue - entryMeasureBefore.bodyWeightValue
-                var v = if (difference >= 0f) "+" else "-"
-                tvMeasurementDifference.text =
-                    v + difference.toString() + entryMeasure.systemUnit.getWeightFormat(context!!)
+                tvMeasurementValue.text = entryMeasure.bodyWeightValue.toString() + entryMeasure.systemUnit.getWeightFormat(context!!)
+                var difference: Double = entryMeasure.bodyWeightValue - entryMeasureBefore.bodyWeightValue
+                var v = if (difference >= 0.0) "+" else ""
+                tvMeasurementDifference.text = v + Utils.getRoundNumberDecimal(difference).toString() + entryMeasure.systemUnit.getWeightFormat(context!!)
                 setBackgroundColor(difference, tvMeasurementDifference)
 
                 tvChestValue.text =
@@ -60,9 +57,9 @@ class HomeFragment : Fragment()
                         context!!
                     )
                 difference = entryMeasure.chestValue - entryMeasureBefore.chestValue
-                v = if (difference >= 0.0f) "+" else "-"
+                v = if (difference >= 0.0) "+" else ""
                 tvChestDifference.text =
-                    v + difference.toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
+                    v + Utils.getRoundNumberDecimal(difference).toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
                 setBackgroundColor(difference, tvChestDifference)
 
                 tvWaistValue.text =
@@ -70,17 +67,17 @@ class HomeFragment : Fragment()
                         context!!
                     )
                 difference = entryMeasure.waistValue - entryMeasureBefore.waistValue
-                v = if (difference >= 0.0f) "+" else "-"
+                v = if (difference >= 0.0) "+" else ""
                 tvWaistDifference.text =
-                    v + difference.toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
+                    v + Utils.getRoundNumberDecimal(difference).toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
                 setBackgroundColor(difference, tvWaistDifference)
 
                 tvHipValue.text =
                     entryMeasure.hipValue.toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
                 difference = entryMeasure.hipValue - entryMeasureBefore.hipValue
-                v = if (difference >= 0.0f) "+" else "-"
+                v = if (difference >= 0.0) "+" else ""
                 tvHipDifference.text =
-                    v + difference.toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
+                    v + Utils.getRoundNumberDecimal(difference).toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
                 setBackgroundColor(difference, tvHipDifference)
 
                 tvBicepValue.text =
@@ -88,17 +85,17 @@ class HomeFragment : Fragment()
                         context!!
                     )
                 difference = entryMeasure.bicepValue - entryMeasureBefore.bicepValue
-                v = if (difference >= 0.0f) "+" else "-"
+                v = if (difference >= 0.0) "+" else ""
                 tvBicepDifference.text =
-                    v + difference.toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
+                    v + Utils.getRoundNumberDecimal(difference).toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
                 setBackgroundColor(difference, tvBicepDifference)
 
                 tvLegValue.text =
                     entryMeasure.legValue.toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
                 difference = entryMeasure.legValue - entryMeasureBefore.legValue
-                v = if (difference >= 0.0f) "+" else "-"
+                v = if (difference >= 0.0) "+" else ""
                 tvLegDifference.text =
-                    v + difference.toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
+                    v + Utils.getRoundNumberDecimal(difference).toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
                 setBackgroundColor(difference, tvLegDifference)
             }
         })
@@ -110,11 +107,11 @@ class HomeFragment : Fragment()
         }
     }
 
-    private fun setBackgroundColor(difference: Float, view: View){
+    private fun setBackgroundColor(difference: Double, view: View){
         when{
-            (difference==0f) -> view.background = context!!.getDrawable(R.drawable.shape_measurement_blue)
-            (difference>0f) -> view.background = context!!.getDrawable(R.drawable.shape_measurement_red)
-            (difference<0f) -> view.background = context!!.getDrawable(R.drawable.shape_measurement_green)
+            (difference==0.0) -> view.background = context!!.getDrawable(R.drawable.shape_measurement_blue)
+            (difference>0.0) -> view.background = context!!.getDrawable(R.drawable.shape_measurement_red)
+            (difference<0.0) -> view.background = context!!.getDrawable(R.drawable.shape_measurement_green)
         }
     }
 }

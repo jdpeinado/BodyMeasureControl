@@ -53,7 +53,7 @@ class ShareViewModel(application: Application): AndroidViewModel(application) {
         addButtonIsEnabled.postValue(true)
         val entryMeasure: EntryMeasure = EntryMeasure(
             Date(),"","","",
-            UnitMeasure.METRIC, 0f, 0f, 0f, 0f, 0f, 0f)
+            UnitMeasure.METRIC, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
         entryMeasureToModify.postValue(entryMeasure)
     }
 }

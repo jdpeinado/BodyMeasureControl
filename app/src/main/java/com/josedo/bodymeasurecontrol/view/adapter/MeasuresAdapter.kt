@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.josedo.bodymeasurecontrol.R
 import com.josedo.bodymeasurecontrol.model.EntryMeasure
+import com.josedo.bodymeasurecontrol.util.Utils
 import java.text.SimpleDateFormat
 
 class MeasuresAdapter(val context: Context, val measuresListener: MeasuresListener): RecyclerView.Adapter<MeasuresAdapter.ViewHolder>() {
@@ -35,13 +36,13 @@ class MeasuresAdapter(val context: Context, val measuresListener: MeasuresListen
         } else {
             val entryMeasureBefore = listEntryMeasures[position + 1]
 
-            val difference:Float = entryMeasure.bodyWeightValue - entryMeasureBefore.bodyWeightValue
-            val v = if(difference>=0.0f) "+" else "-"
-            holder.tvBodyweightDiferrence.text = v + difference.toString() + entryMeasure.systemUnit.getWeightFormat(context)
+            val difference:Double = entryMeasure.bodyWeightValue - entryMeasureBefore.bodyWeightValue
+            val v = if(difference>=0.0) "+" else ""
+            holder.tvBodyweightDiferrence.text = v + Utils.getRoundNumberDecimal(difference).toString() + entryMeasure.systemUnit.getWeightFormat(context)
             when{
-                (difference==0f) -> holder.tvBodyweightDiferrence.background = context!!.getDrawable(R.drawable.shape_measurement_blue)
-                (difference>0f) -> holder.tvBodyweightDiferrence.background = context!!.getDrawable(R.drawable.shape_measurement_red)
-                (difference<0f) -> holder.tvBodyweightDiferrence.background = context!!.getDrawable(R.drawable.shape_measurement_green)
+                (difference==0.0) -> holder.tvBodyweightDiferrence.background = context!!.getDrawable(R.drawable.shape_measurement_blue)
+                (difference>0.0) -> holder.tvBodyweightDiferrence.background = context!!.getDrawable(R.drawable.shape_measurement_red)
+                (difference<0.0) -> holder.tvBodyweightDiferrence.background = context!!.getDrawable(R.drawable.shape_measurement_green)
             }
         }
 

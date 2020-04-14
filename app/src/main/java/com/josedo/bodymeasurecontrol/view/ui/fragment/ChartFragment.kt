@@ -88,12 +88,12 @@ class ChartFragment : Fragment() {
             for(i in viewModel.allEntryMeasures.value?.size!!-1 downTo 0){
             //viewModel.allEntryMeasures.value?.forEachIndexed {i, entryMeasure ->
                 val entryMeasure = viewModel.allEntryMeasures.value!!.get(i)
-                valuesWeight.add(Entry(cont.toFloat(),entryMeasure.bodyWeightValue))
-                valuesChest.add(Entry(cont.toFloat(),entryMeasure.chestValue))
-                valuesWaist.add(Entry(cont.toFloat(),entryMeasure.waistValue))
-                valuesHip.add(Entry(cont.toFloat(),entryMeasure.hipValue))
-                valuesBicep.add(Entry(cont.toFloat(),entryMeasure.bicepValue))
-                valuesLeg.add(Entry(cont.toFloat(),entryMeasure.legValue))
+                valuesWeight.add(Entry(cont.toFloat(),entryMeasure.bodyWeightValue.toFloat()))
+                valuesChest.add(Entry(cont.toFloat(),entryMeasure.chestValue.toFloat()))
+                valuesWaist.add(Entry(cont.toFloat(),entryMeasure.waistValue.toFloat()))
+                valuesHip.add(Entry(cont.toFloat(),entryMeasure.hipValue.toFloat()))
+                valuesBicep.add(Entry(cont.toFloat(),entryMeasure.bicepValue.toFloat()))
+                valuesLeg.add(Entry(cont.toFloat(),entryMeasure.legValue.toFloat()))
                 cont++
             }
 
