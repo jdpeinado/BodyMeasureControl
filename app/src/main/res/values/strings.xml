@@ -1,15 +1,29 @@
 <resources>
     <string name="app_name">BodyMeasureControl</string>
+    <string name="kg_label">kg</string>
+    <string name="lb_label">lb</string>
+    <string name="cm_label">cm</string>
+    <string name="inch_label">inch</string>
     <string name="weight">Peso</string>
     <string name="chest">Pecho</string>
-    <string name="abdomen">Abdomen</string>
-    <string name="waist">Cadera</string>
+    <string name="hip">Cadera</string>
+    <string name="waist">Abdomen</string>
     <string name="biceps">Biceps</string>
     <string name="leg">Pierna</string>
     <string name="date">Fecha</string>
     <string name="addMeasurement">Añadir</string>
-    <string name="modifyMeasurement">Modificar</string>
-    <string name="findMeasurement">Buscar por fecha</string>
+    <string name="editMeasurement">Editar</string>
+    <string name="findMeasurement">Buscar</string>
+    <string name="clearMeasurement">Limpiar</string>
     <string name="chart_title">Gráficas</string>
     <string name="data_title">Datos</string>
+    <string name="message_addnewmeasure">Añadida nueva entrada de medidas...</string>
+    <string name="message_updatenewmeasure">Actualizada entrada de medidas...</string>
+    <string name="message_date_not_enter">Por favor introduzca una fecha</string>
+    <string name="message_weight_not_enter">Por favor introduzca un peso</string>
+    <string name="message_chest_not_enter">Por favor introduzca una medida para el pecho</string>
+    <string name="message_waist_not_enter">Por favor introduzca una medida para el abdomen</string>
+    <string name="message_hip_not_enter">Por favor introduzca una medida para la cadera</string>
+    <string name="message_biceps_not_enter">Por favor introduzca una medida para el bicep</string>
+    <string name="message_leg_not_enter">Por favor introduzca una medida para la pierna</string>
 </resources>

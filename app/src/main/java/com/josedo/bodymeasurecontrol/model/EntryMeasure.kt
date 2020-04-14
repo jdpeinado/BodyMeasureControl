@@ -1,44 +1,53 @@
 package com.josedo.bodymeasurecontrol.model
 
 import androidx.room.*
+import org.jetbrains.annotations.NotNull
+import java.io.Serializable
 import java.util.*
 
-@Entity(tableName = "entrymeasure_table")
-data class EntryMeasure(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int,
+@Entity(tableName = EntryMeasure.TABLE_NAME)
+class EntryMeasure(
 
     @ColumnInfo(name = "date_measure")
-    val dateMeasure: Date,
+    @NotNull
+    var dateMeasure: Date,
 
-    @ColumnInfo(name = "photos_url")
-    val frontPhotoUrl: String,
+    @ColumnInfo(name = "front_photos_url")
+    var frontPhotoUrl: String,
 
-    @ColumnInfo(name = "photos_url")
-    val backPhotoUrl: String,
+    @ColumnInfo(name = "back_photos_url")
+    var backPhotoUrl: String,
 
-    @ColumnInfo(name = "photos_url")
-    val sidePhotoUrl: String,
+    @ColumnInfo(name = "side_photos_url")
+    var sidePhotoUrl: String,
 
     @ColumnInfo(name = "system_unit")
+    @NotNull
     var systemUnit: UnitMeasure,
 
     @ColumnInfo(name = "chest_value")
-    val chestValue: Float,
+    var chestValue: Float,
 
     @ColumnInfo(name = "waist_value")
-    val waistValue: Float,
+    var waistValue: Float,
 
     @ColumnInfo(name = "hip_value")
-    val hipValue: Float,
+    var hipValue: Float,
 
     @ColumnInfo(name = "leg_value")
-    val legValue: Float,
+    var legValue: Float,
 
     @ColumnInfo(name = "bicep_value")
-    val bicepValue: Float,
+    var bicepValue: Float,
 
     @ColumnInfo(name = "bodyWeight_value")
-    val bodyWeightValue: Float
-) {
+    var bodyWeightValue: Float
+
+): Serializable{
+    companion object {
+        const val TABLE_NAME = "entrymeasure_table"
+    }
+
+    @PrimaryKey(autoGenerate = true)
+    var id: Long = 0
 }

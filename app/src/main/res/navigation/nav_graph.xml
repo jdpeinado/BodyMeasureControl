@@ -6,16 +6,19 @@
     app:startDestination="@id/navHomeFragment">
     <fragment
         android:id="@+id/navHomeFragment"
-        android:name="com.josedo.bodymeasurecontrol.view.fragment.HomeFragment"
+        android:name="com.josedo.bodymeasurecontrol.view.ui.fragment.HomeFragment"
         android:label="fragment_home_dialog_detail"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeDialogFragmentDetail_to_chartFragment"
             app:destination="@id/navChartFragment" />
+        <action
+            android:id="@+id/action_navHomeFragment_to_dataInputFragment"
+            app:destination="@id/dataInputFragment" />
     </fragment>
     <fragment
         android:id="@+id/navChartFragment"
-        android:name="com.josedo.bodymeasurecontrol.view.fragment.ChartFragment"
+        android:name="com.josedo.bodymeasurecontrol.view.ui.fragment.ChartFragment"
         android:label="fragment_chart"
         tools:layout="@layout/fragment_chart" >
         <action
@@ -24,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/navMeasuresFragment"
-        android:name="com.josedo.bodymeasurecontrol.view.fragment.MeasuresFragment"
+        android:name="com.josedo.bodymeasurecontrol.view.ui.fragment.MeasuresFragment"
         android:label="fragment_measures"
         tools:layout="@layout/fragment_measures" >
         <action
@@ -33,7 +36,16 @@
     </fragment>
     <dialog
         android:id="@+id/measuresDetailsDialogFragment"
-        android:name="com.josedo.bodymeasurecontrol.view.fragment.MeasuresDetailsDialogFragment"
-        android:label="MeasuresDetailsDialogFragment" />
+        android:name="com.josedo.bodymeasurecontrol.view.ui.fragment.MeasuresDetailsDialogFragment"
+        android:label="MeasuresDetailsDialogFragment" >
+        <action
+            android:id="@+id/action_measuresDetailsDialogFragment_to_dataInputFragment"
+            app:destination="@id/dataInputFragment" />
+    </dialog>
+    <dialog
+        android:id="@+id/dataInputFragment"
+        android:name="com.josedo.bodymeasurecontrol.view.ui.fragment.DataInputFragment"
+        android:label="fragment_data_input"
+        tools:layout="@layout/fragment_data_input" />
 
 </navigation>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="20dp"
-    tools:context=".view.fragment.HomeFragment">
+    tools:context=".view.ui.fragment.HomeFragment">
 
     <TextView
         android:id="@+id/tvDateMeas"
@@ -106,6 +106,7 @@
                             android:text="@string/chest" />
 
                         <TextView
+                            android:id="@+id/tvChestValue"
                             style="@style/AppTheme.Normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -125,9 +126,10 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="5dp"
                             android:layout_marginBottom="10dp"
-                            android:text="@string/abdomen" />
+                            android:text="@string/waist" />
 
                         <TextView
+                            android:id="@+id/tvWaistValue"
                             style="@style/AppTheme.Normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -147,9 +149,10 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="5dp"
                             android:layout_marginBottom="10dp"
-                            android:text="@string/waist" />
+                            android:text="@string/hip" />
 
                         <TextView
+                            android:id="@+id/tvHipValue"
                             style="@style/AppTheme.Normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -172,6 +175,7 @@
                             android:text="@string/biceps" />
 
                         <TextView
+                            android:id="@+id/tvBicepValue"
                             style="@style/AppTheme.Normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -193,6 +197,7 @@
                             android:text="@string/leg" />
 
                         <TextView
+                            android:id="@+id/tvLegValue"
                             style="@style/AppTheme.Normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -216,6 +221,7 @@
                         android:layout_gravity="center_horizontal">
 
                         <TextView
+                            android:id="@+id/tvChestDifference"
                             style="@style/AppTheme.Normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -234,6 +240,7 @@
 
 
                         <TextView
+                            android:id="@+id/tvWaistDifference"
                             style="@style/AppTheme.Normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -251,6 +258,7 @@
                         android:layout_gravity="center_horizontal">
 
                         <TextView
+                            android:id="@+id/tvHipDifference"
                             style="@style/AppTheme.Normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -268,6 +276,7 @@
                         android:layout_gravity="center_horizontal">
 
                         <TextView
+                            android:id="@+id/tvBicepDifference"
                             style="@style/AppTheme.Normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -285,6 +294,7 @@
                         android:layout_gravity="center_horizontal">
 
                         <TextView
+                            android:id="@+id/tvLegDifference"
                             style="@style/AppTheme.Normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

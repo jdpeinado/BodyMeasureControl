@@ -1,13 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.ChartFragment">
+    android:layout_margin="20dp"
+    android:orientation="vertical"
+    tools:context=".view.ui.fragment.ChartFragment">
 
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/chart"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:text="@string/weight"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/weightChart"
+                android:layout_width="match_parent"
+                android:layout_height="400dp" />
+
+            <TextView
+                android:text="@string/chest"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chestChart"
+                android:layout_width="match_parent"
+                android:layout_height="400dp" />
+
+            <TextView
+                android:text="@string/waist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/waistChart"
+                android:layout_width="match_parent"
+                android:layout_height="400dp" />
+
+            <TextView
+                android:text="@string/hip"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/hipChart"
+                android:layout_width="match_parent"
+                android:layout_height="400dp" />
+
+            <TextView
+                android:text="@string/leg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/legChart"
+                android:layout_width="match_parent"
+                android:layout_height="400dp" />
+
+            <TextView
+                android:text="@string/biceps"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/bicepChart"
+                android:layout_width="match_parent"
+                android:layout_height="400dp" />
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
