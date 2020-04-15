@@ -61,7 +61,7 @@
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_marginRight="10dp"
-                            android:src="@drawable/scale" />
+                            android:src="@drawable/ic_scale" />
 
                         <TextView
                             style="@style/AppTheme.Normal"
