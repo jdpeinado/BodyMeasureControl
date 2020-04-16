@@ -3,13 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
     android:orientation="vertical"
-    tools:context=".view.ui.fragment.ChartFragment">
+    tools:context=".view.ui.fragment.ChartFragment"
+    android:background="@color/backgroundGrey">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_margin="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
