@@ -2,4 +2,5 @@
 <resources>
     <dimen name="highMeasurementDetail">25sp</dimen>
     <dimen name="normalMeasurementDetail">15sp</dimen>
+    <dimen name="smallMeasurementDetail">10sp</dimen>
 </resources>

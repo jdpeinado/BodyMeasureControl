@@ -1,10 +1,17 @@
 package com.josedo.bodymeasurecontrol.view.ui.fragment
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
@@ -14,9 +21,12 @@ import androidx.lifecycle.ViewModelProviders
 import com.josedo.bodymeasurecontrol.R
 import com.josedo.bodymeasurecontrol.model.EntryMeasure
 import com.josedo.bodymeasurecontrol.model.UnitMeasure
+import com.josedo.bodymeasurecontrol.util.ImageStorageManager
 import com.josedo.bodymeasurecontrol.viewmodel.ShareViewModel
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import kotlinx.android.synthetic.main.fragment_data_input.*
+import java.io.FileNotFoundException
+import java.io.InputStream
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -27,6 +37,9 @@ import kotlin.collections.ArrayList
  */
 class DataInputFragment : DialogFragment() {
     private lateinit var viewModel: ShareViewModel
+    private val PICK_FRONT_IMAGE = 100
+    private val PICK_BACK_IMAGE = 200
+    private val PICK_SIDE_IMAGE = 300
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,13 +98,50 @@ class DataInputFragment : DialogFragment() {
                     tietHip.setText(entryMeasure.hipValue.toString())
                     tietBicep.setText(entryMeasure.bicepValue.toString())
                     tietLeg.setText(entryMeasure.legValue.toString())
+
+                    if (entryMeasure.frontPhotoUrl.isEmpty() && entryMeasure.backPhotoUrl.isEmpty() && entryMeasure.sidePhotoUrl.isEmpty()) {
+                        ivFrontImage.visibility = View.GONE
+                        ivBackImage.visibility = View.GONE
+                        ivSideImage.visibility = View.GONE
+                    } else {
+                        ivFrontImage.visibility = View.VISIBLE
+                        ivBackImage.visibility = View.VISIBLE
+                        ivSideImage.visibility = View.VISIBLE
+                        if (entryMeasure.frontPhotoUrl.isNotEmpty()) {
+                            val bmpFront: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
+                                this.context!!,
+                                entryMeasure.frontPhotoUrl
+                            )
+                            ivFrontImage.setImageBitmap(bmpFront)
+                        }else{
+                            ivFrontImage.setImageBitmap(null)
+                        }
+                        if (entryMeasure.backPhotoUrl.isNotEmpty()) {
+                            val bmpBack: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
+                                this.context!!,
+                                entryMeasure.backPhotoUrl
+                            )
+                            ivBackImage.setImageBitmap(bmpBack)
+                        }else{
+                            ivBackImage.setImageBitmap(null)
+                        }
+                        if (entryMeasure.sidePhotoUrl.isNotEmpty()) {
+                            val bmpSide: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
+                                this.context!!,
+                                entryMeasure.sidePhotoUrl
+                            )
+                            ivSideImage.setImageBitmap(bmpSide)
+                        }else{
+                            ivSideImage.setImageBitmap(null)
+                        }
+                    }
                 }
             }
         })
 
         val onlyEdit = arguments?.getSerializable(("onlyEdit")) as Boolean
 
-        if(onlyEdit){
+        if (onlyEdit) {
             bAdd.visibility = View.GONE
             bFindDate.visibility = View.GONE
             bClear.visibility = View.GONE
@@ -161,11 +211,16 @@ class DataInputFragment : DialogFragment() {
         bAdd.setOnClickListener {
             if (checkViewEmpty()) {
                 val simpleFormat = SimpleDateFormat("dd/MM/yyyy")
+
+                var frontPhotoUrl = getImageUrl(ivFrontImage, tietDate.text.toString().replace('/', '-') + "_front.jpeg")
+                var backPhotoUrl = getImageUrl(ivBackImage, tietDate.text.toString().replace('/', '-') + "_back.jpeg")
+                var sidePhotoUrl = getImageUrl(ivSideImage, tietDate.text.toString().replace('/', '-') + "_side.jpeg")
+
                 val entryMeasure: EntryMeasure = EntryMeasure(
                     simpleFormat.parse(tietDate.text.toString()),
-                    "",
-                    "",
-                    "",
+                    frontPhotoUrl,
+                    backPhotoUrl,
+                    sidePhotoUrl,
                     UnitMeasure.METRIC,
                     tietChest.text.toString().toDouble(),
                     tietWaist.text.toString().toDouble(),
@@ -189,6 +244,13 @@ class DataInputFragment : DialogFragment() {
                 val simpleFormat = SimpleDateFormat("dd/MM/yyyy")
                 val date = simpleFormat.parse(tietDate.text.toString())
 
+                var frontPhotoUrl = getImageUrl(ivFrontImage, tietDate.text.toString().replace('/', '-') + "_front.jpeg")
+                var backPhotoUrl = getImageUrl(ivBackImage, tietDate.text.toString().replace('/', '-') + "_back.jpeg")
+                var sidePhotoUrl = getImageUrl(ivSideImage, tietDate.text.toString().replace('/', '-') + "_side.jpeg")
+
+                viewModel.entryMeasureToModify.value?.frontPhotoUrl = frontPhotoUrl
+                viewModel.entryMeasureToModify.value?.backPhotoUrl = backPhotoUrl
+                viewModel.entryMeasureToModify.value?.sidePhotoUrl = sidePhotoUrl
                 viewModel.entryMeasureToModify.value?.dateMeasure = date
                 viewModel.entryMeasureToModify.value?.chestValue =
                     tietChest.text.toString().toDouble()
@@ -214,6 +276,43 @@ class DataInputFragment : DialogFragment() {
             viewModel.cleanDataInputFragment()
         }
 
+        bAddFrontImage.setOnClickListener {
+            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+            startActivityForResult(gallery, PICK_FRONT_IMAGE)
+        }
+
+        bAddBackImage.setOnClickListener {
+            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+            startActivityForResult(gallery, PICK_BACK_IMAGE)
+        }
+
+        bAddSideImage.setOnClickListener {
+            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+            startActivityForResult(gallery, PICK_SIDE_IMAGE)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == RESULT_OK && requestCode == PICK_FRONT_IMAGE) {
+            ivFrontImage.setImageURI(data?.getData())
+            ivFrontImage.visibility = View.VISIBLE
+            ivBackImage.visibility = View.VISIBLE
+            ivSideImage.visibility = View.VISIBLE
+        }
+        if (resultCode == RESULT_OK && requestCode == PICK_BACK_IMAGE) {
+            ivBackImage.setImageURI(data?.getData())
+            ivFrontImage.visibility = View.VISIBLE
+            ivBackImage.visibility = View.VISIBLE
+            ivSideImage.visibility = View.VISIBLE
+        }
+        if (resultCode == RESULT_OK && requestCode == PICK_SIDE_IMAGE) {
+            ivSideImage.setImageURI(data?.getData())
+            ivFrontImage.visibility = View.VISIBLE
+            ivBackImage.visibility = View.VISIBLE
+            ivSideImage.visibility = View.VISIBLE
+        }
     }
 
     inner class SelectDateListener : DatePickerDialog.OnDateSetListener {
@@ -291,5 +390,31 @@ class DataInputFragment : DialogFragment() {
         }
 
         return isOk
+    }
+
+    private fun getImageUrl(imageView: ImageView, nameImage: String): String {
+
+        try {
+            ImageStorageManager.deleteImageFromInternalStorage(context!!,nameImage)
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+            //image was not saved yet
+        }
+
+        var imageUrl = ""
+        try {
+            val bmp = (imageView.getDrawable() as BitmapDrawable).bitmap
+            imageUrl = ImageStorageManager.saveToInternalStorage(
+                context!!,
+                bmp,
+                nameImage
+            )
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+            imageUrl = ""
+        }
+
+        return imageUrl
+
     }
 }

@@ -28,6 +28,7 @@ class ShareViewModel(application: Application): AndroidViewModel(application) {
         val entryMeasureDao = EntryMeasureRoomDatabase.getDatabase(application, viewModelScope).entryMeasureDAO()
         repository = EntryMeasureRepository(entryMeasureDao)
         allEntryMeasures = repository.allEntryMeasures
+        isLoading.value = true
     }
 
     fun refresh(){
@@ -35,8 +36,9 @@ class ShareViewModel(application: Application): AndroidViewModel(application) {
     }
 
     fun getAllEntryMeasures(){
+        isLoading.value = true
         allEntryMeasures = repository.allEntryMeasures
-        isLoading.value =  true
+        isLoading.value =  false
     }
 
     fun insert(entryMeasure: EntryMeasure) = viewModelScope.launch(Dispatchers.IO) {

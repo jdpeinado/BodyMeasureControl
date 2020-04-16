@@ -1,5 +1,6 @@
 package com.josedo.bodymeasurecontrol.view.ui.fragment
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.josedo.bodymeasurecontrol.R
+import com.josedo.bodymeasurecontrol.util.ImageStorageManager
 import com.josedo.bodymeasurecontrol.util.Utils
 import com.josedo.bodymeasurecontrol.viewmodel.ShareViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -87,6 +89,30 @@ class HomeFragment : Fragment()
                 tvLegDifference.text = v + Utils.getRoundNumberDecimal(difference).toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
                 setBackgroundColor(difference, tvLegDifference)
                 setBackgroundColor(difference, vDetailLeg)
+
+                if(entryMeasure.frontPhotoUrl.isEmpty() && entryMeasure.backPhotoUrl.isEmpty() && entryMeasure.sidePhotoUrl.isEmpty()){
+                    lyImages.visibility = View.GONE
+                }else{
+                    lyImages.visibility = View.VISIBLE
+                    if(entryMeasure.frontPhotoUrl.isNotEmpty()){
+                        val bmpFront: Bitmap? = ImageStorageManager.getImageFromInternalStorage(this.context!!, entryMeasure.frontPhotoUrl)
+                        ivFrontImage.setImageBitmap(bmpFront)
+                    }else{
+                        ivFrontImage.setImageBitmap(null)
+                    }
+                    if(entryMeasure.backPhotoUrl.isNotEmpty()){
+                        val bmpBack: Bitmap? = ImageStorageManager.getImageFromInternalStorage(this.context!!, entryMeasure.backPhotoUrl)
+                        ivBackImage.setImageBitmap(bmpBack)
+                    }else{
+                        ivBackImage.setImageBitmap(null)
+                    }
+                    if(entryMeasure.sidePhotoUrl.isNotEmpty()){
+                        val bmpSide: Bitmap? = ImageStorageManager.getImageFromInternalStorage(this.context!!, entryMeasure.sidePhotoUrl)
+                        ivSideImage.setImageBitmap(bmpSide)
+                    }else{
+                        ivSideImage.setImageBitmap(null)
+                    }
+                }
             }
         })
 

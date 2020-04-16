@@ -57,7 +57,10 @@ class MeasuresFragment : Fragment(), MeasuresListener {
 
         viewModel.isLoading.observe(viewLifecycleOwner, Observer<Boolean>{
             if(it!= null){
-                rlBaseMeasures.visibility = View.INVISIBLE
+                if(it)
+                    rlBaseMeasures.visibility = View.VISIBLE
+                else
+                    rlBaseMeasures.visibility = View.INVISIBLE
             }
         })
     }

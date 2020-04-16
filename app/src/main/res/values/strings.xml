@@ -27,4 +27,7 @@
     <string name="message_biceps_not_enter">Por favor introduzca una medida para el bicep</string>
     <string name="message_leg_not_enter">Por favor introduzca una medida para la pierna</string>
     <string name="add_edit_title">Añadir/Editar</string>
+    <string name="loadFrontImage">De frente</string>
+    <string name="loadBackImage">Espalda</string>
+    <string name="loadSideImage">Lateral</string>
 </resources>
