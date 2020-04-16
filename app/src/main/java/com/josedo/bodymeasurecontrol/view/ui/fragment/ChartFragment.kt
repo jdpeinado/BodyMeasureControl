@@ -50,32 +50,7 @@ class ChartFragment : Fragment() {
             ViewModelProviders.of(this).get(ShareViewModel::class.java)
         } ?: throw Exception("Invalid Activity")
 
-        /*val valuesWeight = ArrayList<Entry>()
-        val valuesChest = ArrayList<Entry>()
-        val valuesWaist = ArrayList<Entry>()
-        val valuesHip = ArrayList<Entry>()
-        val valuesBicep = ArrayList<Entry>()
-        val valuesLeg = ArrayList<Entry>()
-        for(i in viewModel.allEntryMeasures.value?.size!!-1 downTo 0){
-            //viewModel.allEntryMeasures.value?.forEachIndexed {i, entryMeasure ->
-            val entryMeasure = viewModel.allEntryMeasures.value!!.get(i)
-            valuesWeight.add(Entry(i.toFloat(),entryMeasure.bodyWeightValue))
-            valuesChest.add(Entry(i.toFloat(),entryMeasure.chestValue))
-            valuesWaist.add(Entry(i.toFloat(),entryMeasure.waistValue))
-            valuesHip.add(Entry(i.toFloat(),entryMeasure.hipValue))
-            valuesBicep.add(Entry(i.toFloat(),entryMeasure.bicepValue))
-            valuesLeg.add(Entry(i.toFloat(),entryMeasure.legValue))
-        }
-
-
-        setChart(weightChart,valuesWeight)
-        setChart(chestChart,valuesChest)
-        setChart(waistChart,valuesWaist)
-        setChart(hipChart,valuesHip)
-        setChart(bicepChart,valuesBicep)
-        setChart(legChart,valuesLeg)*/
-
-        viewModel.allEntryMeasures.observe(viewLifecycleOwner, Observer { listEntryMeasure ->
+        viewModel.allEntryMeasures.observe(viewLifecycleOwner, Observer {
 
             val valuesWeight = ArrayList<Entry>()
             val valuesChest = ArrayList<Entry>()
@@ -86,7 +61,6 @@ class ChartFragment : Fragment() {
 
             var cont = 0
             for(i in viewModel.allEntryMeasures.value?.size!!-1 downTo 0){
-            //viewModel.allEntryMeasures.value?.forEachIndexed {i, entryMeasure ->
                 val entryMeasure = viewModel.allEntryMeasures.value!!.get(i)
                 valuesWeight.add(Entry(cont.toFloat(),entryMeasure.bodyWeightValue.toFloat()))
                 valuesChest.add(Entry(cont.toFloat(),entryMeasure.chestValue.toFloat()))
@@ -148,19 +122,19 @@ class ChartFragment : Fragment() {
         } else {
             set1 = LineDataSet(values, title)
             set1.setDrawIcons(false)
-            set1.enableDashedLine(10f, 5f, 0f)
-            set1.color = Color.BLACK
-            set1.setCircleColor(Color.BLACK)
+            //set1.enableDashedLine(10f, 5f, 0f)
+            set1.color = resources.getColor(R.color.colorPrimary)
+            set1.setCircleColor(resources.getColor(R.color.colorPrimaryDark))
             set1.lineWidth = 1f
             set1.circleRadius = 3f
             set1.setDrawCircleHole(false)
             set1.formLineWidth = 1f
-            set1.formLineDashEffect = DashPathEffect(floatArrayOf(10f, 5f), 0f)
+            //set1.formLineDashEffect = DashPathEffect(floatArrayOf(10f, 5f), 0f)
             set1.formSize = 15f
             set1.valueTextSize = 9f
-            set1.enableDashedHighlightLine(10f, 5f, 0f)
-            set1.setDrawFilled(true)
-            set1.fillFormatter =
+            //set1.enableDashedHighlightLine(10f, 0f, 0f)
+            set1.setDrawFilled(false)
+            /*set1.fillFormatter =
                 IFillFormatter { dataSet, dataProvider -> chart.getAxisLeft().getAxisMinimum() }
             if (Utils.getSDKInt() >= 18) {
                 // drawables only supported on api level 18 and above
@@ -168,11 +142,10 @@ class ChartFragment : Fragment() {
                 set1.fillDrawable = drawable
             } else {
                 set1.fillColor = Color.BLACK
-            }
+            }*/
 
-            set1.setDrawFilled(true)
             set1.setDrawValues(false)
-            set1.setDrawCircles(false)
+            set1.setDrawCircles(true)
 
             val dataSets = ArrayList<ILineDataSet>()
             dataSets.add(set1) // add the data sets

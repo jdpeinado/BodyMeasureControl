@@ -4,105 +4,159 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
+    android:layout_margin="10dp"
     tools:context=".view.ui.fragment.HomeFragment">
 
-    <TextView
-        android:id="@+id/tvDateMeas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textSize="@dimen/highMeasurementDetail"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="07/04/2020" />
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvDateMeas">
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/ic_scale" />
-
-            <TextView
-                style="@style/AppTheme.Normal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="@string/weight"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvMeasurementValue"
-                style="@style/AppTheme.Normal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:textStyle="bold"
-                android:text="76kg" />
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/tvMeasurementDifference"
-            style="@style/AppTheme.Normal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/shape_measurement_green"
-            android:textColor="#FFFFFF"
-            android:text="-3kg"
-            android:layout_marginTop="5dp"/>
-
-        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/shape_parrafo"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="1dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:scaleType="centerCrop" />
+
+                <TextView
+                    android:id="@+id/tvDateMeas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center_horizontal"
+                    android:text="@android:string/dialog_alert_title"
+                    android:textColor="#FFFFFF"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    tools:text="07/04/2020" />
+
+            </RelativeLayout>
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:orientation="horizontal"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp">
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/shape_parrafo"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="1dp">
+
+                <View
+                    android:id="@+id/vDetailWieght"
+                    android:layout_width="13dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_measurement_green" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:id="@+id/ivIconScale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_scale" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="5"
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/tvBodyWeight"
                             style="@style/AppTheme.Normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="10dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginStart="10dp"
+                            android:text="@string/weight" />
+
+                        <TextView
+                            android:id="@+id/tvMeasurementValue"
+                            style="@style/AppTheme.Normal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginStart="5dp"
+                            android:textStyle="bold"
+                            tools:text="76kg" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right">
+
+                        <TextView
+                            android:id="@+id/tvMeasurementDifference"
+                            style="@style/AppTheme.Normal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/shape_measurement_green"
+                            android:textColor="#FFFFFF"
+                            tools:text="-3kg" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/shape_parrafo"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="1dp">
+
+                <View
+                    android:id="@+id/vDetailChest"
+                    android:layout_width="13dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_measurement_blue" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:id="@+id/ivIconChest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_chest" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="5"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvChest"
+                            style="@style/AppTheme.Normal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
                             android:text="@string/chest" />
 
                         <TextView
@@ -110,22 +164,72 @@
                             style="@style/AppTheme.Normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:text="102cm" />
-
+                            android:layout_marginStart="5dp"
+                            android:textStyle="bold"
+                            tools:text="102cm" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_weight="1"
+                        android:gravity="right">
 
                         <TextView
+                            android:id="@+id/tvChestDifference"
                             style="@style/AppTheme.Normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_measurement_blue"
+                            android:textColor="#FFFFFF"
+                            tools:text="+1cm" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/shape_parrafo"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="1dp">
+
+                <View
+                    android:id="@+id/vDetailWaist"
+                    android:layout_width="13dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_measurement_green" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:id="@+id/ivIconWaist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_waist" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="5"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvWaist"
+                            style="@style/AppTheme.Normal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
                             android:text="@string/waist" />
 
                         <TextView
@@ -133,22 +237,77 @@
                             style="@style/AppTheme.Normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:text="87cm" />
-
+                            android:layout_marginStart="5dp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvBodyWeight"
+                            tools:text="87cm" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_weight="1"
+                        android:gravity="right">
 
                         <TextView
+                            android:id="@+id/tvWaistDifference"
                             style="@style/AppTheme.Normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_measurement_green"
+                            android:textColor="#FFFFFF"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvMeasurementValue"
+                            tools:text="-2cm" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/shape_parrafo"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="1dp">
+
+                <View
+                    android:id="@+id/vDetailHip"
+                    android:layout_width="13dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_measurement_green" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:id="@+id/ivIconHip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_hip" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="5"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvHip"
+                            style="@style/AppTheme.Normal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
                             android:text="@string/hip" />
 
                         <TextView
@@ -156,22 +315,74 @@
                             style="@style/AppTheme.Normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:text="88cm" />
-
+                            android:layout_marginStart="5dp"
+                            android:textStyle="bold"
+                            tools:text="90cm" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_weight="1"
+                        android:gravity="right">
 
                         <TextView
+                            android:id="@+id/tvHipDifference"
                             style="@style/AppTheme.Normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_measurement_green"
+                            android:textColor="#FFFFFF"
+                            tools:text="-3cm" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/shape_parrafo"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="1dp">
+
+                <View
+                    android:id="@+id/vDetailBicep"
+                    android:layout_width="13dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_measurement_red" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:id="@+id/ivIconBicep"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_bicep"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="5"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvBicep"
+                            style="@style/AppTheme.Normal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
                             android:text="@string/biceps" />
 
                         <TextView
@@ -179,21 +390,73 @@
                             style="@style/AppTheme.Normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:text="32cm" />
-
+                            android:layout_marginStart="5dp"
+                            android:textStyle="bold"
+                            tools:text="32cm" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_weight="1"
+                        android:gravity="right">
 
                         <TextView
+                            android:id="@+id/tvBicepDifference"
                             style="@style/AppTheme.Normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="5dp"
+                            android:background="@drawable/shape_measurement_red"
+                            android:textColor="#FFFFFF"
+                            tools:text="+1cm" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/shape_parrafo"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="1dp">
+
+                <View
+                    android:id="@+id/vDetailLeg"
+                    android:layout_width="13dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_measurement_blue" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:id="@+id/ivIconLeg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_leg" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="5"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvLeg"
+                            style="@style/AppTheme.Normal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
                             android:text="@string/leg" />
 
                         <TextView
@@ -201,97 +464,16 @@
                             style="@style/AppTheme.Normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:text="58cm" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_gravity="center_horizontal">
-
-                        <TextView
-                            android:id="@+id/tvChestDifference"
-                            style="@style/AppTheme.Normal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            android:background="@drawable/shape_measurement_blue"
-                            android:textColor="#FFFFFF"
-                            android:text="+1cm" />
-
+                            android:layout_marginStart="5dp"
+                            android:textStyle="bold"
+                            tools:text="58cm" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_gravity="center_horizontal">
-
-
-                        <TextView
-                            android:id="@+id/tvWaistDifference"
-                            style="@style/AppTheme.Normal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            android:background="@drawable/shape_measurement_green"
-                            android:textColor="#FFFFFF"
-                            android:text="-2cm" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_gravity="center_horizontal">
-
-                        <TextView
-                            android:id="@+id/tvHipDifference"
-                            style="@style/AppTheme.Normal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            android:background="@drawable/shape_measurement_green"
-                            android:textColor="#FFFFFF"
-                            android:text="-3cm" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_gravity="center_horizontal">
-
-                        <TextView
-                            android:id="@+id/tvBicepDifference"
-                            style="@style/AppTheme.Normal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            android:background="@drawable/shape_measurement_red"
-                            android:textColor="#FFFFFF"
-                            android:text="+1cm" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_gravity="center_horizontal">
+                        android:layout_weight="1"
+                        android:gravity="right">
 
                         <TextView
                             android:id="@+id/tvLegDifference"
@@ -300,26 +482,31 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/shape_measurement_blue"
                             android:textColor="#FFFFFF"
-                            android:text="0cm" />
-
+                            tools:text="0cm" />
                     </LinearLayout>
-
                 </LinearLayout>
 
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
-    </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_action_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
-        app:srcCompat="@drawable/ic_add"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/ic_add"
+        app:backgroundTint="@color/colorAccent"
+        app:borderWidth="0dp"
+        app:elevation="0dp"
+        app:fabSize="auto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="15dp"
-        android:layout_marginEnd="15dp"/>
+        app:tint="@android:color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

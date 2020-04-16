@@ -100,7 +100,9 @@ class DataInputFragment : DialogFragment() {
 
             val entryMeasure = arguments?.getSerializable(("entryMeasure")) as EntryMeasure
             viewModel.entryMeasureToModify.value = entryMeasure
+            toolbarAddMeasure.title = getString(R.string.editMeasurement)
         } else {
+            toolbarAddMeasure.title = getString(R.string.add_edit_title)
             viewModel.addButtonIsEnabled.observe(viewLifecycleOwner, Observer {
                 bAdd.isEnabled = it
             })
