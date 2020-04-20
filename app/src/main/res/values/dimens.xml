@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="highMeasurementDetail">25sp</dimen>
-    <dimen name="normalMeasurementDetail">15sp</dimen>
-    <dimen name="smallMeasurementDetail">10sp</dimen>
+    <dimen name="highMeasurementDetail">24sp</dimen>
+    <dimen name="normalMeasurementDetail">16sp</dimen>
+    <dimen name="smallMeasurementDetail">12sp</dimen>
 </resources>

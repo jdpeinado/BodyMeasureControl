@@ -10,19 +10,10 @@
         android:label="fragment_home_dialog_detail"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeDialogFragmentDetail_to_chartFragment"
-            app:destination="@id/navChartFragment" />
-        <action
             android:id="@+id/action_navHomeFragment_to_dataInputFragment"
             app:destination="@id/dataInputFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/navChartFragment"
-        android:name="com.josedo.bodymeasurecontrol.view.ui.fragment.ChartFragment"
-        android:label="fragment_chart"
-        tools:layout="@layout/fragment_chart" >
         <action
-            android:id="@+id/action_chartFragment_to_measuresFragment"
+            android:id="@+id/action_navHomeFragment_to_navMeasuresFragment"
             app:destination="@id/navMeasuresFragment" />
     </fragment>
     <fragment
@@ -33,6 +24,12 @@
         <action
             android:id="@+id/action_navMeasuresFragment_to_measuresDetailsDialogFragment"
             app:destination="@id/measuresDetailsDialogFragment" />
+        <action
+            android:id="@+id/action_navMeasuresFragment_to_navHomeFragment"
+            app:destination="@id/navHomeFragment" />
+        <action
+            android:id="@+id/action_navMeasuresFragment_to_dataInputFragment"
+            app:destination="@id/dataInputFragment" />
     </fragment>
     <dialog
         android:id="@+id/measuresDetailsDialogFragment"

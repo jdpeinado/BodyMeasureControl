@@ -32,17 +32,25 @@ class MeasuresAdapter(val context: Context, val measuresListener: MeasuresListen
 
         if(position+1>=listEntryMeasures.size){
             holder.tvBodyweightDiferrence.text = "+0" + entryMeasure.systemUnit.getWeightFormat(context)
-            holder.tvBodyweightDiferrence.background = context!!.getDrawable(R.drawable.shape_measurement_blue)
+            holder.tvBodyweightDiferrence.setCompoundDrawablesWithIntrinsicBounds(
+                null, null, null, null
+            )
         } else {
             val entryMeasureBefore = listEntryMeasures[position + 1]
 
             val difference:Double = entryMeasure.bodyWeightValue - entryMeasureBefore.bodyWeightValue
             val v = if(difference>=0.0) "+" else ""
             holder.tvBodyweightDiferrence.text = v + Utils.getRoundNumberDecimal(difference).toString() + entryMeasure.systemUnit.getWeightFormat(context)
-            when{
-                (difference==0.0) -> holder.tvBodyweightDiferrence.background = context!!.getDrawable(R.drawable.shape_measurement_blue)
-                (difference>0.0) -> holder.tvBodyweightDiferrence.background = context!!.getDrawable(R.drawable.shape_measurement_red)
-                (difference<0.0) -> holder.tvBodyweightDiferrence.background = context!!.getDrawable(R.drawable.shape_measurement_green)
+            when {
+                (difference == 0.0) -> holder.tvBodyweightDiferrence.setCompoundDrawablesWithIntrinsicBounds(
+                    null, null, null, null
+                )
+                (difference > 0.0) -> holder.tvBodyweightDiferrence.setCompoundDrawablesWithIntrinsicBounds(
+                    context!!.getDrawable(R.drawable.ic_arrow_up), null, null, null
+                )
+                (difference < 0.0) -> holder.tvBodyweightDiferrence.setCompoundDrawablesWithIntrinsicBounds(
+                    context!!.getDrawable(R.drawable.ic_arrow_down), null, null, null
+                )
             }
         }
 

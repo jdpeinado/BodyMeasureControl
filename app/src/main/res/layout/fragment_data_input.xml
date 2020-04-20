@@ -348,7 +348,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="30dp"
                     android:text="@string/addMeasurement"
-                    app:layout_constraintBottom_toTopOf="@+id/bFindDate"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/bModify"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -357,33 +357,11 @@
                     android:id="@+id/bModify"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:enabled="false"
                     android:text="@string/editMeasurement"
-                    app:layout_constraintBottom_toTopOf="@+id/bClear"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/bAdd"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/bFindDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="30dp"
-                    android:text="@string/findMeasurement"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/bClear"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/bAdd" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/bClear"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/clearMeasurement"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/bFindDate"
-                    app:layout_constraintTop_toTopOf="@+id/bModify" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

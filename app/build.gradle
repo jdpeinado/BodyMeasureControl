@@ -56,6 +56,8 @@ dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     implementation 'com.wdullaer:materialdatetimepicker:4.2.3'
     implementation 'com.opencsv:opencsv:5.1'
+    implementation 'net.cachapa.expandablelayout:expandablelayout:2.9.2'
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 
     // Room components
     implementation "androidx.room:room-runtime:$rootProject.roomVersion"

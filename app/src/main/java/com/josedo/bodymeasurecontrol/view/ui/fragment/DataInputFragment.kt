@@ -1,6 +1,8 @@
 package com.josedo.bodymeasurecontrol.view.ui.fragment
 
 import android.app.Activity.RESULT_OK
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -24,6 +26,7 @@ import com.josedo.bodymeasurecontrol.model.UnitMeasure
 import com.josedo.bodymeasurecontrol.util.ImageStorageManager
 import com.josedo.bodymeasurecontrol.viewmodel.ShareViewModel
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
+import kotlinx.android.synthetic.main.dialog_image.view.*
 import kotlinx.android.synthetic.main.fragment_data_input.*
 import java.io.FileNotFoundException
 import java.io.InputStream
@@ -43,7 +46,7 @@ class DataInputFragment : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(STYLE_NORMAL, R.style.FulllScreenDialogStyle2)
+        setStyle(STYLE_NORMAL, R.style.FulllScreenDialogStyle)
     }
 
     override fun onCreateView(
@@ -143,16 +146,14 @@ class DataInputFragment : DialogFragment() {
 
         if (onlyEdit) {
             bAdd.visibility = View.GONE
-            bFindDate.visibility = View.GONE
-            bClear.visibility = View.GONE
-            bModify.isEnabled = true
             tietDate.isEnabled = false
 
             val entryMeasure = arguments?.getSerializable(("entryMeasure")) as EntryMeasure
             viewModel.entryMeasureToModify.value = entryMeasure
             toolbarAddMeasure.title = getString(R.string.editMeasurement)
         } else {
-            toolbarAddMeasure.title = getString(R.string.add_edit_title)
+            bModify.visibility = View.GONE
+            toolbarAddMeasure.title = getString(R.string.addMeasurement)
             viewModel.addButtonIsEnabled.observe(viewLifecycleOwner, Observer {
                 bAdd.isEnabled = it
             })
@@ -183,28 +184,6 @@ class DataInputFragment : DialogFragment() {
             val array: Array<Calendar?> = arrayOfNulls<Calendar>(cals.size)
             cals.toArray(array)
             dpd.setDisabledDays(array)
-            dpd.show(this.parentFragmentManager, "Datepickerdialog bodymeasurecontrol")
-        }
-
-        val findDateListener = FindDateListener()
-        bFindDate.setOnClickListener {
-            val now = Calendar.getInstance()
-            val dpd: DatePickerDialog = DatePickerDialog.newInstance(
-                findDateListener,
-                now[Calendar.YEAR],
-                now[Calendar.MONTH],
-                now[Calendar.DAY_OF_MONTH]
-            )
-            dpd.setVersion(DatePickerDialog.Version.VERSION_2)
-            var cals: ArrayList<Calendar> = ArrayList<Calendar>()
-            viewModel.allEntryMeasures.value?.forEach { entryMeasure ->
-                val calendar = Calendar.getInstance()
-                calendar.setTime(entryMeasure.dateMeasure)
-                cals.add(calendar)
-            }
-            val array: Array<Calendar?> = arrayOfNulls<Calendar>(cals.size)
-            cals.toArray(array)
-            dpd.setSelectableDays(array)
             dpd.show(this.parentFragmentManager, "Datepickerdialog bodymeasurecontrol")
         }
 
@@ -272,10 +251,6 @@ class DataInputFragment : DialogFragment() {
             }
         }
 
-        bClear.setOnClickListener {
-            viewModel.cleanDataInputFragment()
-        }
-
         bAddFrontImage.setOnClickListener {
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
             startActivityForResult(gallery, PICK_FRONT_IMAGE)
@@ -290,6 +265,29 @@ class DataInputFragment : DialogFragment() {
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
             startActivityForResult(gallery, PICK_SIDE_IMAGE)
         }
+
+        ivFrontImage.setOnClickListener {
+            showDialogImage(ivFrontImage)
+        }
+
+        ivBackImage.setOnClickListener {
+            showDialogImage(ivBackImage)
+        }
+        ivSideImage.setOnClickListener {
+            showDialogImage(ivSideImage)
+        }
+    }
+
+    private fun showDialogImage(imageView: ImageView){
+        val mDialogView = LayoutInflater.from(this.context).inflate(R.layout.dialog_image, null)
+        val mBuilder = AlertDialog.Builder(this.context)
+            .setView(mDialogView)
+            .setPositiveButton(resources.getString(R.string.ok), DialogInterface.OnClickListener { dialog, which ->
+                dialog.dismiss()
+            })
+        val  mAlertDialog = mBuilder.show()
+        mAlertDialog.setCanceledOnTouchOutside(true)
+        mDialogView.ivPhoto.setImageBitmap((imageView.getDrawable() as BitmapDrawable).bitmap)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -325,29 +323,6 @@ class DataInputFragment : DialogFragment() {
             val date =
                 dayOfMonth.toString() + "/" + (monthOfYear + 1).toString() + "/" + year
             tietDate.setText(date)
-        }
-    }
-
-    inner class FindDateListener : DatePickerDialog.OnDateSetListener {
-        override fun onDateSet(
-            view: DatePickerDialog?,
-            year: Int,
-            monthOfYear: Int,
-            dayOfMonth: Int
-        ) {
-            val dateString =
-                dayOfMonth.toString() + "/" + (monthOfYear + 1).toString() + "/" + year
-            val simpleDateFormat = SimpleDateFormat("dd/MM/yyyy")
-            val date = simpleDateFormat.parse(dateString)
-
-            viewModel.allEntryMeasures.value?.forEach { entryMeasure ->
-                if (entryMeasure.dateMeasure == date) {
-                    viewModel.entryMeasureToModify.value = entryMeasure
-                    viewModel.dateEditTextIsEnabled.value = false
-                    viewModel.modifyButtonIsEnabled.value = true
-                    viewModel.addButtonIsEnabled.value = false
-                }
-            }
         }
     }
 

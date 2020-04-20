@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navHomeFragment"
-        android:title="Inicio"
+        android:title="@string/home"
         android:icon="@drawable/ic_home"/>
-
-    <item
-        android:id="@+id/navChartFragment"
-        android:title="@string/chart_title"
-        android:icon="@drawable/ic_chart"/>
 
     <item
         android:id="@+id/navMeasuresFragment"

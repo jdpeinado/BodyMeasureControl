@@ -4,22 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ui.activity.MainActivity"
-    android:background="@color/backgroundGrey">
+    android:background="@color/backgroundGrey"
+    tools:context=".view.ui.activity.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <Toolbar
-            android:id="@+id/toolbarMain"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:src="@drawable/logo_bodymeasurecontrol"/>
 
-        </Toolbar>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarMain"
+            android:minHeight="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleTextColor="@android:color/white"
+            android:background="?attr/colorPrimary">
+        </androidx.appcompat.widget.Toolbar>
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <RelativeLayout
@@ -33,17 +33,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@id/bnvMenu"
-            app:navGraph="@navigation/nav_graph"
-            app:defaultNavHost="true"/>
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/nav_graph" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bnvMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            app:menu="@menu/bnv_menu"
-            android:background="@android:color/white">
-        </com.google.android.material.bottomnavigation.BottomNavigationView>
+            android:background="@android:color/white"
+            app:menu="@menu/bnv_menu"/>
     </RelativeLayout>
 
 
