@@ -198,12 +198,12 @@
                             android:id="@+id/elChest"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:paddingStart="5dp"
+                            android:paddingEnd="5dp"
+                            android:paddingBottom="5dp"
                             app:el_duration="1000"
                             app:el_expanded="true"
-                            app:el_parallax="0.5"
-                            android:paddingBottom="5dp"
-                            android:paddingStart="5dp"
-                            android:paddingEnd="5dp">
+                            app:el_parallax="0.5">
 
                             <com.github.mikephil.charting.charts.LineChart
                                 android:id="@+id/chestChart"
@@ -294,12 +294,12 @@
                             android:id="@+id/elWaist"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:paddingStart="5dp"
+                            android:paddingEnd="5dp"
+                            android:paddingBottom="5dp"
                             app:el_duration="1000"
                             app:el_expanded="true"
-                            app:el_parallax="0.5"
-                            android:paddingBottom="5dp"
-                            android:paddingStart="5dp"
-                            android:paddingEnd="5dp">
+                            app:el_parallax="0.5">
 
                             <com.github.mikephil.charting.charts.LineChart
                                 android:id="@+id/waistChart"
@@ -384,12 +384,12 @@
                             android:id="@+id/elHip"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:paddingStart="5dp"
+                            android:paddingEnd="5dp"
+                            android:paddingBottom="5dp"
                             app:el_duration="1000"
                             app:el_expanded="true"
-                            app:el_parallax="0.5"
-                            android:paddingBottom="5dp"
-                            android:paddingStart="5dp"
-                            android:paddingEnd="5dp">
+                            app:el_parallax="0.5">
 
                             <com.github.mikephil.charting.charts.LineChart
                                 android:id="@+id/hipChart"
@@ -482,12 +482,12 @@
                             android:id="@+id/elBicep"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:paddingStart="5dp"
+                            android:paddingEnd="5dp"
+                            android:paddingBottom="5dp"
                             app:el_duration="1000"
                             app:el_expanded="true"
-                            app:el_parallax="0.5"
-                            android:paddingBottom="5dp"
-                            android:paddingStart="5dp"
-                            android:paddingEnd="5dp">
+                            app:el_parallax="0.5">
 
                             <com.github.mikephil.charting.charts.LineChart
                                 android:id="@+id/bicepChart"
@@ -571,12 +571,12 @@
                             android:id="@+id/elLeg"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:paddingStart="5dp"
+                            android:paddingEnd="5dp"
+                            android:paddingBottom="5dp"
                             app:el_duration="1000"
                             app:el_expanded="true"
-                            app:el_parallax="0.5"
-                            android:paddingBottom="5dp"
-                            android:paddingStart="5dp"
-                            android:paddingEnd="5dp">
+                            app:el_parallax="0.5">
 
                             <com.github.mikephil.charting.charts.LineChart
                                 android:id="@+id/legChart"
@@ -590,32 +590,42 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/lyImages"
-                android:layout_width="match_parent"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvImages"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/shape_parrafo"
                 android:layout_margin="5dp"
-                android:orientation="horizontal">
+                app:cardCornerRadius="5dp"
+                app:cardElevation="1dp">
 
-                <ImageView
-                    android:id="@+id/ivFrontImage"
-                    android:layout_width="0dp"
-                    android:layout_height="100dp"
-                    android:layout_weight="1" />
+                <LinearLayout
+                    android:id="@+id/lyImages"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/ivBackImage"
-                    android:layout_width="0dp"
-                    android:layout_height="100dp"
-                    android:layout_weight="1" />
+                    <ImageView
+                        android:id="@+id/ivFrontImage"
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_weight="1" />
 
-                <ImageView
-                    android:id="@+id/ivSideImage"
-                    android:layout_width="0dp"
-                    android:layout_height="100dp"
-                    android:layout_weight="1" />
+                    <ImageView
+                        android:id="@+id/ivBackImage"
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_weight="1" />
 
-            </LinearLayout>
+                    <ImageView
+                        android:id="@+id/ivSideImage"
+                        android:layout_width="0dp"
+                        android:layout_height="100dp"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 
