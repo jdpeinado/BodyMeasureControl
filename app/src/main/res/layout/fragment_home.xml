@@ -17,19 +17,38 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <TextView
+                android:id="@+id/tvDateMeas"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/highMeasurementDetail"
+                android:textStyle="bold"
+                tools:text="07/04/2020" />
+
+            <LinearLayout
+                android:id="@+id/lyIMC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center">
 
                 <TextView
-                    android:id="@+id/tvDateMeas"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/highMeasurementDetail"
-                    android:textStyle="bold"
-                    tools:text="07/04/2020" />
+                    android:text="@string/imc"
+                    android:textSize="@dimen/smallMeasurementDetail" />
 
-            </RelativeLayout>
+                <TextView
+                    android:id="@+id/tvIMC"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="22.5"
+                    android:layout_marginStart="5dp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/highMeasurementDetail" />
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -594,8 +613,8 @@
                 android:id="@+id/cvImages"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_parrafo"
                 android:layout_margin="5dp"
+                android:background="@drawable/shape_parrafo"
                 app:cardCornerRadius="5dp"
                 app:cardElevation="1dp">
 

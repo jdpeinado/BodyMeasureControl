@@ -10,4 +10,9 @@
         android:id="@+id/navMeasuresFragment"
         android:title="@string/data_title"
         android:icon="@drawable/ic_list"/>
+
+    <item
+        android:id="@+id/navPreferencesFragment"
+        android:title="@string/profile_title"
+        android:icon="@drawable/ic_person"/>
 </menu>

@@ -27,6 +27,7 @@ import com.josedo.bodymeasurecontrol.R
 import com.josedo.bodymeasurecontrol.model.EntryMeasure
 import com.josedo.bodymeasurecontrol.model.UnitMeasure
 import com.josedo.bodymeasurecontrol.util.ImageStorageManager
+import com.josedo.bodymeasurecontrol.util.Utils
 import com.josedo.bodymeasurecontrol.viewmodel.ShareViewModel
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import kotlinx.android.synthetic.main.dialog_image.view.*
@@ -98,12 +99,12 @@ class DataInputFragment : DialogFragment() {
                     tietLeg.setText("")
                 } else {
                     tietDate.setText(simpleDateFormat.format(entryMeasure.dateMeasure))
-                    tietWeight.setText(entryMeasure.bodyWeightValue.toString())
-                    tietChest.setText(entryMeasure.chestValue.toString())
-                    tietWaist.setText(entryMeasure.waistValue.toString())
-                    tietHip.setText(entryMeasure.hipValue.toString())
-                    tietBicep.setText(entryMeasure.bicepValue.toString())
-                    tietLeg.setText(entryMeasure.legValue.toString())
+                    tietWeight.setText(UnitMeasure.fromKgToLb(this.context!!, entryMeasure.bodyWeightValue).toString())
+                    tietChest.setText(UnitMeasure.fromCmToIn(this.context!!, entryMeasure.chestValue).toString())
+                    tietWaist.setText(UnitMeasure.fromCmToIn(this.context!!, entryMeasure.waistValue).toString())
+                    tietHip.setText(UnitMeasure.fromCmToIn(this.context!!, entryMeasure.hipValue).toString())
+                    tietBicep.setText(UnitMeasure.fromCmToIn(this.context!!, entryMeasure.bicepValue).toString())
+                    tietLeg.setText(UnitMeasure.fromCmToIn(this.context!!, entryMeasure.legValue).toString())
 
                     if (entryMeasure.frontPhotoUrl.isEmpty() && entryMeasure.backPhotoUrl.isEmpty() && entryMeasure.sidePhotoUrl.isEmpty()) {
                         ivFrontImage.visibility = View.GONE
@@ -213,12 +214,12 @@ class DataInputFragment : DialogFragment() {
                     backPhotoUrl,
                     sidePhotoUrl,
                     UnitMeasure.METRIC,
-                    tietChest.text.toString().toDouble(),
-                    tietWaist.text.toString().toDouble(),
-                    tietHip.text.toString().toDouble(),
-                    tietLeg.text.toString().toDouble(),
-                    tietBicep.text.toString().toDouble(),
-                    tietWeight.text.toString().toDouble()
+                    UnitMeasure.fromInToCm(this.context!!, tietChest.text.toString().toDouble()),
+                    UnitMeasure.fromInToCm(this.context!!, tietWaist.text.toString().toDouble()),
+                    UnitMeasure.fromInToCm(this.context!!, tietHip.text.toString().toDouble()),
+                    UnitMeasure.fromInToCm(this.context!!, tietLeg.text.toString().toDouble()),
+                    UnitMeasure.fromInToCm(this.context!!, tietBicep.text.toString().toDouble()),
+                    UnitMeasure.fromLbTokg(this.context!!, tietWeight.text.toString().toDouble())
                 )
                 viewModel.insert(entryMeasure)
                 Toast.makeText(
@@ -252,16 +253,12 @@ class DataInputFragment : DialogFragment() {
                 viewModel.entryMeasureToModify.value?.backPhotoUrl = backPhotoUrl
                 viewModel.entryMeasureToModify.value?.sidePhotoUrl = sidePhotoUrl
                 viewModel.entryMeasureToModify.value?.dateMeasure = date
-                viewModel.entryMeasureToModify.value?.chestValue =
-                    tietChest.text.toString().toDouble()
-                viewModel.entryMeasureToModify.value?.waistValue =
-                    tietWaist.text.toString().toDouble()
-                viewModel.entryMeasureToModify.value?.hipValue = tietHip.text.toString().toDouble()
-                viewModel.entryMeasureToModify.value?.legValue = tietLeg.text.toString().toDouble()
-                viewModel.entryMeasureToModify.value?.bicepValue =
-                    tietBicep.text.toString().toDouble()
-                viewModel.entryMeasureToModify.value?.bodyWeightValue =
-                    tietWeight.text.toString().toDouble()
+                viewModel.entryMeasureToModify.value?.chestValue = UnitMeasure.fromInToCm(this.context!!, tietChest.text.toString().toDouble())
+                viewModel.entryMeasureToModify.value?.waistValue = UnitMeasure.fromInToCm(this.context!!, tietWaist.text.toString().toDouble())
+                viewModel.entryMeasureToModify.value?.hipValue = UnitMeasure.fromInToCm(this.context!!, tietHip.text.toString().toDouble())
+                viewModel.entryMeasureToModify.value?.legValue = UnitMeasure.fromInToCm(this.context!!, tietLeg.text.toString().toDouble())
+                viewModel.entryMeasureToModify.value?.bicepValue = UnitMeasure.fromInToCm(this.context!!, tietBicep.text.toString().toDouble())
+                viewModel.entryMeasureToModify.value?.bodyWeightValue = UnitMeasure.fromLbTokg(this.context!!, tietWeight.text.toString().toDouble())
                 viewModel.update(viewModel.entryMeasureToModify.value!!)
                 Toast.makeText(
                     this.parentFragment?.context,

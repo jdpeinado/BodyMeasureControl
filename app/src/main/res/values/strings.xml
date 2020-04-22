@@ -1,9 +1,10 @@
 <resources>
+    //General
     <string name="app_name">BodyMeasureControl</string>
     <string name="kg_label">kg</string>
     <string name="lb_label">lb</string>
     <string name="cm_label">cm</string>
-    <string name="inch_label">inch</string>
+    <string name="inch_label">in</string>
     <string name="weight">Peso</string>
     <string name="chest">Pecho</string>
     <string name="hip">Cadera</string>
@@ -13,9 +14,6 @@
     <string name="date">Fecha</string>
     <string name="addMeasurement">Añadir</string>
     <string name="editMeasurement">Editar</string>
-    <string name="findMeasurement">Buscar</string>
-    <string name="clearMeasurement">Limpiar</string>
-    <string name="chart_title">Gráficas</string>
     <string name="data_title">Datos</string>
     <string name="message_addnewmeasure">Añadida nueva entrada de medidas...</string>
     <string name="message_updatenewmeasure">Actualizada entrada de medidas...</string>
@@ -40,4 +38,16 @@
     <string name="camera">Cámara</string>
     <string name="cancel">Cancelar</string>
     <string name="error_save_image">Hubo un problema al guardar la imagen...</string>
+    <string name="profile_title">Perfil</string>
+    <string name="measure_presentation">%1$s%2$s</string>
+
+    //Preferences
+    <string name="preferences_title">Preferencias</string>
+    <string name="height_key">height</string>
+    <string name="height_title">Altura</string>
+    <string name="height_default_summary">Introduce la altura</string>
+    <string name="metric_system_key">metric_system</string>
+    <string name="metric_system_title">Sistema de medida</string>
+    <string name="metric_system_default_summary">Por favor seleccione su sistema de medida</string>
+    <string name="imc">IMC</string>
 </resources>

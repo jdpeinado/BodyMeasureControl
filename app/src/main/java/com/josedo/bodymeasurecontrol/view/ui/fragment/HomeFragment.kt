@@ -2,6 +2,7 @@ package com.josedo.bodymeasurecontrol.view.ui.fragment
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
@@ -16,6 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.Entry
@@ -23,6 +25,7 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.josedo.bodymeasurecontrol.R
+import com.josedo.bodymeasurecontrol.model.UnitMeasure
 import com.josedo.bodymeasurecontrol.util.ImageStorageManager
 import com.josedo.bodymeasurecontrol.util.Utils
 import com.josedo.bodymeasurecontrol.viewmodel.ShareViewModel
@@ -57,69 +60,78 @@ class HomeFragment : Fragment() {
             if (listEntryMeasure.size == 0) {
 
             } else {
+
+                val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+                val height = prefs.getString(
+                    context?.getString(R.string.height_key),
+                    null
+                )
+                val metric_system = prefs.getString(
+                    context!!.getString(R.string.metric_system_key),
+                    UnitMeasure.METRIC.value.toString()
+                )
+
                 val simpleDateFormat = SimpleDateFormat("dd/MM/yyyy")
                 val entryMeasure = listEntryMeasure[0]
                 var entryMeasureBefore = entryMeasure
                 if (listEntryMeasure.size >= 2)
                     entryMeasureBefore = listEntryMeasure[listEntryMeasure.size - 1]
 
+                try {
+                    if(metric_system != null && height!=null) {
+                        if (metric_system.toInt().equals(UnitMeasure.METRIC.value)){
+                            val imc = Utils.getRoundNumberDecimal(entryMeasure.bodyWeightValue / (height.toDouble()*height.toDouble()),1)
+                            tvIMC.text= imc.toString()
+                        }else{
+                            val correctUnitMeasure = height.toDouble() / 3.28084
+                            val imc = Utils.getRoundNumberDecimal(entryMeasure.bodyWeightValue / (correctUnitMeasure*correctUnitMeasure),1)
+                            tvIMC.text= imc.toString()
+                        }
+                    }else
+                        lyIMC.visibility = View.GONE
+                } catch (ex: Exception){
+                    lyIMC.visibility = View.GONE
+                }
+
                 tvDateMeas.text = simpleDateFormat.format(entryMeasure.dateMeasure)
 
                 tvMeasurementValue.text =
-                    entryMeasure.bodyWeightValue.toString() + entryMeasure.systemUnit.getWeightFormat(
-                        context!!
-                    )
+                    UnitMeasure.fromKgToLbString(this.context!!, entryMeasure.bodyWeightValue)
                 var difference: Double =
                     entryMeasure.bodyWeightValue - entryMeasureBefore.bodyWeightValue
                 var v = if (difference >= 0.0) "+" else ""
-                tvMeasurementDifference.text = v + Utils.getRoundNumberDecimal(difference)
-                    .toString() + entryMeasure.systemUnit.getWeightFormat(context!!)
+                tvMeasurementDifference.text =
+                    v + UnitMeasure.fromKgToLbString(this.context!!, difference)
                 setArrow(difference, tvMeasurementDifference)
 
-                tvChestValue.text =
-                    entryMeasure.chestValue.toString() + entryMeasure.systemUnit.getSizeFormat(
-                        context!!
-                    )
+                tvChestValue.text = UnitMeasure.fromCmToInString(this.context!!, entryMeasure.chestValue)
                 difference = entryMeasure.chestValue - entryMeasureBefore.chestValue
                 v = if (difference >= 0.0) "+" else ""
-                tvChestDifference.text = v + Utils.getRoundNumberDecimal(difference)
-                    .toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
+                tvChestDifference.text = v + UnitMeasure.fromCmToInString(this.context!!, difference)
                 setArrow(difference, tvChestDifference)
 
-                tvWaistValue.text =
-                    entryMeasure.waistValue.toString() + entryMeasure.systemUnit.getSizeFormat(
-                        context!!
-                    )
+                tvWaistValue.text = UnitMeasure.fromCmToInString(this.context!!, entryMeasure.waistValue)
                 difference = entryMeasure.waistValue - entryMeasureBefore.waistValue
                 v = if (difference >= 0.0) "+" else ""
-                tvWaistDifference.text = v + Utils.getRoundNumberDecimal(difference)
-                    .toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
+                tvWaistDifference.text = v + UnitMeasure.fromCmToInString(this.context!!, difference)
                 setArrow(difference, tvWaistDifference)
 
-                tvHipValue.text =
-                    entryMeasure.hipValue.toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
+                tvHipValue.text = UnitMeasure.fromCmToInString(this.context!!, entryMeasure.hipValue)
                 difference = entryMeasure.hipValue - entryMeasureBefore.hipValue
                 v = if (difference >= 0.0) "+" else ""
-                tvHipDifference.text = v + Utils.getRoundNumberDecimal(difference)
-                    .toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
+                tvHipDifference.text = v + UnitMeasure.fromCmToInString(this.context!!, difference)
                 setArrow(difference, tvHipDifference)
 
-                tvBicepValue.text =
-                    entryMeasure.bicepValue.toString() + entryMeasure.systemUnit.getSizeFormat(
-                        context!!
-                    )
+                tvBicepValue.text = UnitMeasure.fromCmToInString(this.context!!, entryMeasure.bicepValue)
                 difference = entryMeasure.bicepValue - entryMeasureBefore.bicepValue
                 v = if (difference >= 0.0) "+" else ""
-                tvBicepDifference.text = v + Utils.getRoundNumberDecimal(difference)
-                    .toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
+                tvBicepDifference.text = v + UnitMeasure.fromCmToInString(this.context!!, difference)
                 setArrow(difference, tvBicepDifference)
 
-                tvLegValue.text =
-                    entryMeasure.legValue.toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
+                tvLegValue.text = UnitMeasure.fromCmToInString(this.context!!, entryMeasure.legValue)
                 difference = entryMeasure.legValue - entryMeasureBefore.legValue
                 v = if (difference >= 0.0) "+" else ""
-                tvLegDifference.text = v + Utils.getRoundNumberDecimal(difference)
-                    .toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
+                tvLegDifference.text = v + UnitMeasure.fromCmToInString(this.context!!, difference)
                 setArrow(difference, tvLegDifference)
 
                 if (entryMeasure.frontPhotoUrl.isEmpty() && entryMeasure.backPhotoUrl.isEmpty() && entryMeasure.sidePhotoUrl.isEmpty()) {
@@ -200,45 +212,18 @@ class HomeFragment : Fragment() {
             showDialogImage(ivSideImage)
         }
 
-        /*cvWeight.setOnClickListener {
-            expandOrcollapse(elWeight, ibWeight)
-        }
-
-        cvChest.setOnClickListener {
-            expandOrcollapse(elChest, ibChest)
-        }
-        cvWaist.setOnClickListener {
-            expandOrcollapse(elWaist, ibWaist)
-        }
-        cvHip.setOnClickListener {
-            expandOrcollapse(elHip, ibHip)
-        }
-        cvBicep.setOnClickListener {
-            expandOrcollapse(elBicep, ibBicep)
-        }
-        cvLeg.setOnClickListener {
-            expandOrcollapse(elLeg, ibLeg)
-        }*/
     }
 
-    private fun expandOrcollapse(expandableLayout: ExpandableLayout, imageView: ImageView) {
-        if (expandableLayout.isExpanded) {
-            imageView.background = resources.getDrawable(R.drawable.ic_expand_more)
-            expandableLayout.collapse()
-        } else {
-            imageView.background = resources.getDrawable(R.drawable.ic_expand_less)
-            expandableLayout.expand()
-        }
-    }
-
-    private fun showDialogImage(imageView: ImageView){
+    private fun showDialogImage(imageView: ImageView) {
         val mDialogView = LayoutInflater.from(this.context).inflate(R.layout.dialog_image, null)
         val mBuilder = AlertDialog.Builder(this.context)
             .setView(mDialogView)
-            .setPositiveButton(resources.getString(R.string.ok), DialogInterface.OnClickListener { dialog, which ->
-                dialog.dismiss()
-            })
-        val  mAlertDialog = mBuilder.show()
+            .setPositiveButton(
+                resources.getString(R.string.ok),
+                DialogInterface.OnClickListener { dialog, which ->
+                    dialog.dismiss()
+                })
+        val mAlertDialog = mBuilder.show()
         mAlertDialog.setCanceledOnTouchOutside(true)
         mDialogView.ivPhoto.setImageBitmap((imageView.getDrawable() as BitmapDrawable).bitmap)
     }

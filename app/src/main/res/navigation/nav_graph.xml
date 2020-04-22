@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_navHomeFragment_to_navMeasuresFragment"
             app:destination="@id/navMeasuresFragment" />
+        <action
+            android:id="@+id/action_navHomeFragment_to_preferencesFragment"
+            app:destination="@id/navPreferencesFragment" />
     </fragment>
     <fragment
         android:id="@+id/navMeasuresFragment"
@@ -30,6 +33,9 @@
         <action
             android:id="@+id/action_navMeasuresFragment_to_dataInputFragment"
             app:destination="@id/dataInputFragment" />
+        <action
+            android:id="@+id/action_navMeasuresFragment_to_preferencesFragment"
+            app:destination="@id/navPreferencesFragment" />
     </fragment>
     <dialog
         android:id="@+id/measuresDetailsDialogFragment"
@@ -44,5 +50,9 @@
         android:name="com.josedo.bodymeasurecontrol.view.ui.fragment.DataInputFragment"
         android:label="fragment_data_input"
         tools:layout="@layout/fragment_data_input" />
+    <fragment
+        android:id="@+id/navPreferencesFragment"
+        android:name="com.josedo.bodymeasurecontrol.view.ui.fragment.PreferencesFragment"
+        android:label="PreferencesFragment" />
 
 </navigation>

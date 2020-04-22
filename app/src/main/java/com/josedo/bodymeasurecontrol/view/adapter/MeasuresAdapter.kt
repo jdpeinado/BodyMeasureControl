@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.josedo.bodymeasurecontrol.R
 import com.josedo.bodymeasurecontrol.model.EntryMeasure
+import com.josedo.bodymeasurecontrol.model.UnitMeasure
 import com.josedo.bodymeasurecontrol.util.Utils
 import java.text.SimpleDateFormat
 
@@ -28,10 +29,10 @@ class MeasuresAdapter(val context: Context, val measuresListener: MeasuresListen
         val simpleDateFormat = SimpleDateFormat("dd/MM/yyyy")
         holder.tvMeasureDate.text = simpleDateFormat.format(entryMeasure.dateMeasure)
 
-        holder.tvBodyWegihtValue.text = entryMeasure.bodyWeightValue.toString() + entryMeasure.systemUnit.getWeightFormat(context)
+        holder.tvBodyWegihtValue.text = UnitMeasure.fromKgToLbString(this.context!!, entryMeasure.bodyWeightValue)
 
         if(position+1>=listEntryMeasures.size){
-            holder.tvBodyweightDiferrence.text = "+0" + entryMeasure.systemUnit.getWeightFormat(context)
+            holder.tvBodyweightDiferrence.text = "+" + UnitMeasure.fromKgToLbString(this.context!!, 0.0)
             holder.tvBodyweightDiferrence.setCompoundDrawablesWithIntrinsicBounds(
                 null, null, null, null
             )
@@ -40,7 +41,7 @@ class MeasuresAdapter(val context: Context, val measuresListener: MeasuresListen
 
             val difference:Double = entryMeasure.bodyWeightValue - entryMeasureBefore.bodyWeightValue
             val v = if(difference>=0.0) "+" else ""
-            holder.tvBodyweightDiferrence.text = v + Utils.getRoundNumberDecimal(difference).toString() + entryMeasure.systemUnit.getWeightFormat(context)
+            holder.tvBodyweightDiferrence.text = v + UnitMeasure.fromKgToLbString(this.context!!, difference)
             when {
                 (difference == 0.0) -> holder.tvBodyweightDiferrence.setCompoundDrawablesWithIntrinsicBounds(
                     null, null, null, null

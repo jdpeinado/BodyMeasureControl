@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.josedo.bodymeasurecontrol.R
 import com.josedo.bodymeasurecontrol.model.EntryMeasure
+import com.josedo.bodymeasurecontrol.model.UnitMeasure
 import com.josedo.bodymeasurecontrol.util.ImageStorageManager
 import com.josedo.bodymeasurecontrol.util.Utils
 import com.josedo.bodymeasurecontrol.viewmodel.ShareViewModel
@@ -68,7 +69,7 @@ class MeasuresDetailsDialogFragment : DialogFragment() {
         if (position + 1 < viewModel.allEntryMeasures.value!!.size)
             entryMeasureBefore = viewModel.allEntryMeasures.value?.get(position + 1)
 
-        setData(entryMeasure, entryMeasureBefore)
+        setData(entryMeasure, entryMeasureBefore!!)
 
         viewModel.allEntryMeasures.observe(viewLifecycleOwner, Observer { entryMeasure ->
             val entryMeasure = viewModel.allEntryMeasures.value?.get(position)
@@ -76,7 +77,7 @@ class MeasuresDetailsDialogFragment : DialogFragment() {
             if (position + 1 < viewModel.allEntryMeasures.value!!.size)
                 entryMeasureBefore = viewModel.allEntryMeasures.value?.get(position + 1)
 
-            setData(entryMeasure, entryMeasureBefore)
+            setData(entryMeasure, entryMeasureBefore!!)
         })
 
         floating_action_button_edit.setOnClickListener {
@@ -121,70 +122,61 @@ class MeasuresDetailsDialogFragment : DialogFragment() {
         )
     }
 
-    private fun showDialogImage(imageView: ImageView){
+    private fun showDialogImage(imageView: ImageView) {
         val mDialogView = LayoutInflater.from(this.context).inflate(R.layout.dialog_image, null)
         val mBuilder = AlertDialog.Builder(this.context)
             .setView(mDialogView)
-            .setPositiveButton(resources.getString(R.string.ok), DialogInterface.OnClickListener { dialog, which ->
-                dialog.dismiss()
-            })
-        val  mAlertDialog = mBuilder.show()
+            .setPositiveButton(
+                resources.getString(R.string.ok),
+                DialogInterface.OnClickListener { dialog, which ->
+                    dialog.dismiss()
+                })
+        val mAlertDialog = mBuilder.show()
         mAlertDialog.setCanceledOnTouchOutside(true)
         mDialogView.ivPhoto.setImageBitmap((imageView.getDrawable() as BitmapDrawable).bitmap)
     }
 
-    private fun setData(entryMeasure: EntryMeasure?, entryMeasureBefore: EntryMeasure?) {
+    private fun setData(entryMeasure: EntryMeasure?, entryMeasureBefore: EntryMeasure) {
         val simpleDateFormat = SimpleDateFormat("dd/MM/yyyy")
         tvDateMeas.text = simpleDateFormat.format(entryMeasure!!.dateMeasure)
 
         tvMeasurementValue.text =
-            entryMeasure.bodyWeightValue.toString() + entryMeasure.systemUnit.getWeightFormat(
-                context!!
-            )
-        var difference: Double = entryMeasure.bodyWeightValue - entryMeasureBefore!!.bodyWeightValue
+            UnitMeasure.fromKgToLbString(this.context!!, entryMeasure.bodyWeightValue)
+        var difference: Double =
+            entryMeasure.bodyWeightValue - entryMeasureBefore.bodyWeightValue
         var v = if (difference >= 0.0) "+" else ""
-        tvMeasurementDifference.text = v + Utils.getRoundNumberDecimal(difference)
-            .toString() + entryMeasure.systemUnit.getWeightFormat(context!!)
+        tvMeasurementDifference.text =
+            v + UnitMeasure.fromKgToLbString(this.context!!, difference)
         setArrow(difference, tvMeasurementDifference)
 
-        tvChestValue.text =
-            entryMeasure.chestValue.toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
-        difference = entryMeasure.chestValue - entryMeasureBefore!!.chestValue
+        tvChestValue.text = UnitMeasure.fromCmToInString(this.context!!, entryMeasure.chestValue)
+        difference = entryMeasure.chestValue - entryMeasureBefore.chestValue
         v = if (difference >= 0.0) "+" else ""
-        tvChestDifference.text = v + Utils.getRoundNumberDecimal(difference)
-            .toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
+        tvChestDifference.text = v + UnitMeasure.fromCmToInString(this.context!!, difference)
         setArrow(difference, tvChestDifference)
 
-        tvWaistValue.text =
-            entryMeasure.waistValue.toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
-        difference = entryMeasure.waistValue - entryMeasureBefore!!.waistValue
+        tvWaistValue.text = UnitMeasure.fromCmToInString(this.context!!, entryMeasure.waistValue)
+        difference = entryMeasure.waistValue - entryMeasureBefore.waistValue
         v = if (difference >= 0.0) "+" else ""
-        tvWaistDifference.text = v + Utils.getRoundNumberDecimal(difference)
-            .toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
+        tvWaistDifference.text = v + UnitMeasure.fromCmToInString(this.context!!, difference)
         setArrow(difference, tvWaistDifference)
 
-        tvHipValue.text =
-            entryMeasure.hipValue.toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
-        difference = entryMeasure.hipValue - entryMeasureBefore!!.hipValue
+        tvHipValue.text = UnitMeasure.fromCmToInString(this.context!!, entryMeasure.hipValue)
+        difference = entryMeasure.hipValue - entryMeasureBefore.hipValue
         v = if (difference >= 0.0) "+" else ""
-        tvHipDifference.text = v + Utils.getRoundNumberDecimal(difference)
-            .toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
+        tvHipDifference.text = v + UnitMeasure.fromCmToInString(this.context!!, difference)
         setArrow(difference, tvHipDifference)
 
-        tvBicepValue.text =
-            entryMeasure.bicepValue.toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
-        difference = entryMeasure.bicepValue - entryMeasureBefore!!.bicepValue
+        tvBicepValue.text = UnitMeasure.fromCmToInString(this.context!!, entryMeasure.bicepValue)
+        difference = entryMeasure.bicepValue - entryMeasureBefore.bicepValue
         v = if (difference >= 0.0) "+" else ""
-        tvBicepDifference.text = v + Utils.getRoundNumberDecimal(difference)
-            .toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
+        tvBicepDifference.text = v + UnitMeasure.fromCmToInString(this.context!!, difference)
         setArrow(difference, tvBicepDifference)
 
-        tvLegValue.text =
-            entryMeasure.legValue.toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
-        difference = entryMeasure.legValue - entryMeasureBefore!!.legValue
+        tvLegValue.text = UnitMeasure.fromCmToInString(this.context!!, entryMeasure.legValue)
+        difference = entryMeasure.legValue - entryMeasureBefore.legValue
         v = if (difference >= 0.0) "+" else ""
-        tvLegDifference.text = v + Utils.getRoundNumberDecimal(difference)
-            .toString() + entryMeasure.systemUnit.getSizeFormat(context!!)
+        tvLegDifference.text = v + UnitMeasure.fromCmToInString(this.context!!, difference)
         setArrow(difference, tvLegDifference)
 
         if (entryMeasure.frontPhotoUrl.isEmpty() && entryMeasure.backPhotoUrl.isEmpty() && entryMeasure.sidePhotoUrl.isEmpty()) {
