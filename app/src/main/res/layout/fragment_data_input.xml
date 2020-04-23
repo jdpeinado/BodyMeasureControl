@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:text="@string/loadImages"
-                android:textSize="@dimen/normalMeasurementDetail"
+                style="@style/AppTheme.Normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -99,7 +99,7 @@
                         android:layout_marginEnd="5dp"
                         android:layout_weight="1"
                         android:text="@string/loadFrontImage"
-                        android:textSize="@dimen/smallMeasurementDetail" />
+                        style="@style/AppTheme.Small" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/bAddBackImage"
@@ -109,7 +109,7 @@
                         android:layout_marginEnd="5dp"
                         android:layout_weight="1"
                         android:text="@string/loadBackImage"
-                        android:textSize="@dimen/smallMeasurementDetail" />
+                        style="@style/AppTheme.Small" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/bAddSideImage"
@@ -119,7 +119,7 @@
                         android:layout_marginEnd="5dp"
                         android:layout_weight="1"
                         android:text="@string/loadSideImage"
-                        android:textSize="@dimen/smallMeasurementDetail" />
+                        style="@style/AppTheme.Small" />
                 </LinearLayout>
 
             </LinearLayout>

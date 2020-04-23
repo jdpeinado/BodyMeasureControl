@@ -9,18 +9,17 @@
 
     <TextView
         android:id="@+id/tvNoDataMessage"
+        style="@style/AppTheme.Normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:gravity="center_vertical"
         android:text="@string/blank_state_home_message"
-        android:textSize="@dimen/highMeasurementDetail"
-        android:textStyle="bold"
         android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:id="@+id/lyContent"
@@ -35,10 +34,10 @@
 
             <TextView
                 android:id="@+id/tvDateMeas"
+                style="@style/AppTheme.High"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/highMeasurementDetail"
-                android:textStyle="bold"
+                android:textColor="@color/mdtp_dark_gray"
                 tools:text="07/04/2020" />
 
             <LinearLayout
@@ -52,16 +51,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/imc"
-                    android:textSize="@dimen/smallMeasurementDetail" />
+                    style="@style/AppTheme.Small" />
 
                 <TextView
                     android:id="@+id/tvIMC"
+                    style="@style/AppTheme.High"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/highMeasurementDetail"
-                    android:textStyle="bold"
                     tools:text="22.5" />
             </LinearLayout>
 
@@ -111,15 +108,13 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/weight"
-                                    android:textSize="@dimen/smallMeasurementDetail" />
+                                    style="@style/AppTheme.Small" />
 
                                 <TextView
                                     android:id="@+id/tvMeasurementValue"
+                                    style="@style/AppTheme.High"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textColor="@android:color/black"
-                                    android:textSize="@dimen/highMeasurementDetail"
-                                    android:textStyle="bold"
                                     tools:text="76kg" />
 
                                 <TextView
@@ -127,7 +122,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:drawableStart="@drawable/ic_arrow_down"
-                                    android:textSize="@dimen/normalMeasurementDetail"
+                                    style="@style/AppTheme.Normal"
                                     tools:text="-3kg" />
                             </LinearLayout>
 
@@ -200,15 +195,13 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/chest"
-                                    android:textSize="@dimen/smallMeasurementDetail" />
+                                    style="@style/AppTheme.Small" />
 
                                 <TextView
                                     android:id="@+id/tvChestValue"
+                                    style="@style/AppTheme.High"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textColor="@android:color/black"
-                                    android:textSize="@dimen/highMeasurementDetail"
-                                    android:textStyle="bold"
                                     tools:text="102cm" />
 
                                 <TextView
@@ -216,7 +209,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:drawableStart="@drawable/ic_arrow_up"
-                                    android:textSize="@dimen/normalMeasurementDetail"
+                                    style="@style/AppTheme.Normal"
                                     tools:text="+1cm" />
                             </LinearLayout>
 
@@ -297,15 +290,13 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/waist"
-                                    android:textSize="@dimen/smallMeasurementDetail" />
+                                    style="@style/AppTheme.Small" />
 
                                 <TextView
                                     android:id="@+id/tvWaistValue"
+                                    style="@style/AppTheme.High"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textColor="@android:color/black"
-                                    android:textSize="@dimen/highMeasurementDetail"
-                                    android:textStyle="bold"
                                     tools:text="87cm" />
 
                                 <TextView
@@ -313,7 +304,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:drawableStart="@drawable/ic_arrow_down"
-                                    android:textSize="@dimen/normalMeasurementDetail"
+                                    style="@style/AppTheme.Normal"
                                     tools:text="-2cm" />
                             </LinearLayout>
                         </LinearLayout>
@@ -387,15 +378,13 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/hip"
-                                    android:textSize="@dimen/smallMeasurementDetail" />
+                                    style="@style/AppTheme.Small" />
 
                                 <TextView
                                     android:id="@+id/tvHipValue"
+                                    style="@style/AppTheme.High"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textColor="@android:color/black"
-                                    android:textSize="@dimen/highMeasurementDetail"
-                                    android:textStyle="bold"
                                     tools:text="90cm" />
 
                                 <TextView
@@ -403,7 +392,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:drawableStart="@drawable/ic_arrow_down"
-                                    android:textSize="@dimen/normalMeasurementDetail"
+                                    style="@style/AppTheme.Normal"
                                     tools:text="-3cm" />
                             </LinearLayout>
                         </LinearLayout>
@@ -483,15 +472,13 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/biceps"
-                                    android:textSize="@dimen/smallMeasurementDetail" />
+                                    style="@style/AppTheme.Small" />
 
                                 <TextView
                                     android:id="@+id/tvBicepValue"
+                                    style="@style/AppTheme.High"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textColor="@android:color/black"
-                                    android:textSize="@dimen/highMeasurementDetail"
-                                    android:textStyle="bold"
                                     tools:text="32cm" />
 
                                 <TextView
@@ -499,7 +486,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:drawableStart="@drawable/ic_arrow_up"
-                                    android:textSize="@dimen/normalMeasurementDetail"
+                                    style="@style/AppTheme.Normal"
                                     tools:text="+1cm" />
                             </LinearLayout>
 
@@ -574,22 +561,20 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/leg"
-                                    android:textSize="@dimen/smallMeasurementDetail" />
+                                    style="@style/AppTheme.Small" />
 
                                 <TextView
                                     android:id="@+id/tvLegValue"
+                                    style="@style/AppTheme.High"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textColor="@android:color/black"
-                                    android:textSize="@dimen/highMeasurementDetail"
-                                    android:textStyle="bold"
                                     tools:text="58cm" />
 
                                 <TextView
                                     android:id="@+id/tvLegDifference"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="@dimen/normalMeasurementDetail"
+                                    style="@style/AppTheme.Normal"
                                     tools:text="0cm" />
                             </LinearLayout>
 

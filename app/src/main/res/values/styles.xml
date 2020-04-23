@@ -13,7 +13,14 @@
 
     <style name="AppTheme.Normal" parent="AppTheme">
         <item name="android:textSize">@dimen/normalMeasurementDetail</item>
-
+    </style>
+    <style name="AppTheme.High" parent="AppTheme">
+        <item name="android:textSize">@dimen/highMeasurementDetail</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:color">@android:color/black</item>
+    </style>
+    <style name="AppTheme.Small" parent="AppTheme">
+        <item name="android:textSize">@dimen/smallMeasurementDetail</item>
     </style>
 
     <style name="FulllScreenDialogStyle" parent="Theme.AppCompat.Light.Dialog">

@@ -22,8 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorAccent"
-                android:textSize="@dimen/highMeasurementDetail"
-                android:textStyle="bold"
+                style="@style/AppTheme.High"
                 tools:text="07/04/2020" />
 
             <LinearLayout
@@ -37,14 +36,12 @@
                     android:layout_height="wrap_content"
                     android:text="@string/weight"
                     android:layout_marginEnd="5dp"
-                    android:textSize="@dimen/smallMeasurementDetail" />
+                    style="@style/AppTheme.Small" />
                 <TextView
                     android:id="@+id/tvBodyWegihtValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/highMeasurementDetail"
-                    android:textStyle="bold"
+                    style="@style/AppTheme.High"
                     tools:text="76kg" />
 
             </LinearLayout>
@@ -62,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_arrow_down"
-                android:textSize="@dimen/normalMeasurementDetail"
+                style="@style/AppTheme.Normal"
                 tools:text="-3kg"/>
 
         </LinearLayout>
