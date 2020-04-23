@@ -116,7 +116,6 @@ class DataInputFragment : DialogFragment() {
                         ivSideImage.visibility = View.VISIBLE
                         if (entryMeasure.frontPhotoUrl.isNotEmpty()) {
                             val bmpFront: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
-                                this.context!!,
                                 entryMeasure.frontPhotoUrl
                             )
                             ivFrontImage.setImageBitmap(bmpFront)
@@ -125,7 +124,6 @@ class DataInputFragment : DialogFragment() {
                         }
                         if (entryMeasure.backPhotoUrl.isNotEmpty()) {
                             val bmpBack: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
-                                this.context!!,
                                 entryMeasure.backPhotoUrl
                             )
                             ivBackImage.setImageBitmap(bmpBack)
@@ -134,7 +132,6 @@ class DataInputFragment : DialogFragment() {
                         }
                         if (entryMeasure.sidePhotoUrl.isNotEmpty()) {
                             val bmpSide: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
-                                this.context!!,
                                 entryMeasure.sidePhotoUrl
                             )
                             ivSideImage.setImageBitmap(bmpSide)
@@ -209,7 +206,7 @@ class DataInputFragment : DialogFragment() {
                 )
 
                 val entryMeasure: EntryMeasure = EntryMeasure(
-                    simpleFormat.parse(tietDate.text.toString()),
+                    simpleFormat.parse(tietDate.text.toString())!!,
                     frontPhotoUrl,
                     backPhotoUrl,
                     sidePhotoUrl,
@@ -252,7 +249,7 @@ class DataInputFragment : DialogFragment() {
                 viewModel.entryMeasureToModify.value?.frontPhotoUrl = frontPhotoUrl
                 viewModel.entryMeasureToModify.value?.backPhotoUrl = backPhotoUrl
                 viewModel.entryMeasureToModify.value?.sidePhotoUrl = sidePhotoUrl
-                viewModel.entryMeasureToModify.value?.dateMeasure = date
+                viewModel.entryMeasureToModify.value?.dateMeasure = date!!
                 viewModel.entryMeasureToModify.value?.chestValue = UnitMeasure.fromInToCm(this.context!!, tietChest.text.toString().toDouble())
                 viewModel.entryMeasureToModify.value?.waistValue = UnitMeasure.fromInToCm(this.context!!, tietWaist.text.toString().toDouble())
                 viewModel.entryMeasureToModify.value?.hipValue = UnitMeasure.fromInToCm(this.context!!, tietHip.text.toString().toDouble())
@@ -303,14 +300,14 @@ class DataInputFragment : DialogFragment() {
             .setMessage(resources.getString(R.string.choose_gallery_camera_message))
             .setPositiveButton(
                 resources.getString(R.string.gallery)
-            ) { dialog, which ->
+            ) { _, _ ->
                 val gallery =
                     Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
                 startActivityForResult(gallery, type)
             }
             .setNeutralButton(
                 resources.getString(R.string.camera)
-            ) { dialog, which ->
+            ) { _, _ ->
                 Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
                     context?.packageManager?.let {
                         takePictureIntent.resolveActivity(it)?.also {
@@ -322,11 +319,11 @@ class DataInputFragment : DialogFragment() {
                                 null
                             }
                             // Continue only if the File was successfully created
-                            photoFile?.also {photoFile->
+                            photoFile?.also { photoFileAux ->
                                 val photoURI: Uri = FileProvider.getUriForFile(
                                     this.context!!,
                                     "com.josedo.bodymeasurecontrol.fileprovider",
-                                    photoFile
+                                    photoFileAux
                                 )
                                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
                                 startActivityForResult(takePictureIntent, type)
@@ -367,7 +364,7 @@ class DataInputFragment : DialogFragment() {
             .setView(mDialogView)
             .setPositiveButton(
                 resources.getString(R.string.ok),
-                DialogInterface.OnClickListener { dialog, which ->
+                DialogInterface.OnClickListener { dialog, _ ->
                     dialog.dismiss()
                 })
         val mAlertDialog = mBuilder.show()
@@ -385,7 +382,7 @@ class DataInputFragment : DialogFragment() {
                 file.delete()
                 currentPhotoPath = ""
             }else {
-                ivFrontImage.setImageURI(data?.getData())
+                ivFrontImage.setImageURI(data.getData())
             }
             ivFrontImage.visibility = View.VISIBLE
             ivBackImage.visibility = View.VISIBLE
@@ -398,7 +395,7 @@ class DataInputFragment : DialogFragment() {
                 file.delete()
                 currentPhotoPath = ""
             }else {
-                ivBackImage.setImageURI(data?.getData())
+                ivBackImage.setImageURI(data.getData())
             }
             ivFrontImage.visibility = View.VISIBLE
             ivBackImage.visibility = View.VISIBLE
@@ -411,7 +408,7 @@ class DataInputFragment : DialogFragment() {
                 file.delete()
                 currentPhotoPath = ""
             }else {
-                ivSideImage.setImageURI(data?.getData())
+                ivSideImage.setImageURI(data.getData())
             }
             ivFrontImage.visibility = View.VISIBLE
             ivBackImage.visibility = View.VISIBLE
@@ -469,7 +466,7 @@ class DataInputFragment : DialogFragment() {
     private fun getImageUrl(imageView: ImageView, nameImage: String): String {
 
         try {
-            ImageStorageManager.deleteImageFromInternalStorage(context!!, nameImage)
+            ImageStorageManager.deleteImageFromInternalStorage(nameImage)
         } catch (ex: Exception) {
             ex.printStackTrace()
             //image was not saved yet

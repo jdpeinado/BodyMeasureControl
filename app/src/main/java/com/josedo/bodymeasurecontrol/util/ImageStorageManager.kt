@@ -15,16 +15,12 @@ class ImageStorageManager {
             return context.filesDir.absolutePath + File.separatorChar + imageFileName
         }
 
-        fun getImageFromInternalStorage(context: Context, imageFileName: String): Bitmap? {
-            //val directory = context.filesDir
-            //val file = File(directory, imageFileName)
+        fun getImageFromInternalStorage(imageFileName: String): Bitmap? {
             val file = File(imageFileName)
             return BitmapFactory.decodeStream(FileInputStream(file))
         }
 
-        fun deleteImageFromInternalStorage(context: Context, imageFileName: String): Boolean {
-            //val dir = context.filesDir
-            //val file = File(dir, imageFileName)
+        fun deleteImageFromInternalStorage(imageFileName: String): Boolean {
             val file = File(imageFileName)
             return file.delete()
         }

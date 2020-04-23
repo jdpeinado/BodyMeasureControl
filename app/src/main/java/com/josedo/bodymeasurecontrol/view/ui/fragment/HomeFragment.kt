@@ -143,21 +143,18 @@ class HomeFragment : Fragment() {
                     lyImages.visibility = View.VISIBLE
                     if (entryMeasure.frontPhotoUrl.isNotEmpty()) {
                         val bmpFront: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
-                            this.context!!,
                             entryMeasure.frontPhotoUrl
                         )
                         ivFrontImage.setImageBitmap(bmpFront)
                     }
                     if (entryMeasure.backPhotoUrl.isNotEmpty()) {
                         val bmpBack: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
-                            this.context!!,
                             entryMeasure.backPhotoUrl
                         )
                         ivBackImage.setImageBitmap(bmpBack)
                     }
                     if (entryMeasure.sidePhotoUrl.isNotEmpty()) {
                         val bmpSide: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
-                            this.context!!,
                             entryMeasure.sidePhotoUrl
                         )
                         ivSideImage.setImageBitmap(bmpSide)
@@ -173,13 +170,13 @@ class HomeFragment : Fragment() {
 
                 var cont = 0
                 for (i in viewModel.allEntryMeasures.value?.size!! - 1 downTo 0) {
-                    val entryMeasure = viewModel.allEntryMeasures.value!!.get(i)
-                    valuesWeight.add(Entry(cont.toFloat(), entryMeasure.bodyWeightValue.toFloat()))
-                    valuesChest.add(Entry(cont.toFloat(), entryMeasure.chestValue.toFloat()))
-                    valuesWaist.add(Entry(cont.toFloat(), entryMeasure.waistValue.toFloat()))
-                    valuesHip.add(Entry(cont.toFloat(), entryMeasure.hipValue.toFloat()))
-                    valuesBicep.add(Entry(cont.toFloat(), entryMeasure.bicepValue.toFloat()))
-                    valuesLeg.add(Entry(cont.toFloat(), entryMeasure.legValue.toFloat()))
+                    val entryMeasureToAdd = viewModel.allEntryMeasures.value!!.get(i)
+                    valuesWeight.add(Entry(cont.toFloat(), entryMeasureToAdd.bodyWeightValue.toFloat()))
+                    valuesChest.add(Entry(cont.toFloat(), entryMeasureToAdd.chestValue.toFloat()))
+                    valuesWaist.add(Entry(cont.toFloat(), entryMeasureToAdd.waistValue.toFloat()))
+                    valuesHip.add(Entry(cont.toFloat(), entryMeasureToAdd.hipValue.toFloat()))
+                    valuesBicep.add(Entry(cont.toFloat(), entryMeasureToAdd.bicepValue.toFloat()))
+                    valuesLeg.add(Entry(cont.toFloat(), entryMeasureToAdd.legValue.toFloat()))
                     cont++
                 }
 
@@ -221,7 +218,7 @@ class HomeFragment : Fragment() {
             .setView(mDialogView)
             .setPositiveButton(
                 resources.getString(R.string.ok),
-                DialogInterface.OnClickListener { dialog, which ->
+                DialogInterface.OnClickListener { dialog, _ ->
                     dialog.dismiss()
                 })
         val mAlertDialog = mBuilder.show()

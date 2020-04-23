@@ -71,13 +71,13 @@ class MeasuresDetailsDialogFragment : DialogFragment() {
 
         setData(entryMeasure, entryMeasureBefore!!)
 
-        viewModel.allEntryMeasures.observe(viewLifecycleOwner, Observer { entryMeasure ->
-            val entryMeasure = viewModel.allEntryMeasures.value?.get(position)
-            var entryMeasureBefore = entryMeasure
-            if (position + 1 < viewModel.allEntryMeasures.value!!.size)
-                entryMeasureBefore = viewModel.allEntryMeasures.value?.get(position + 1)
+        viewModel.allEntryMeasures.observe(viewLifecycleOwner, Observer {listEntryMeasures ->
+            val entryMeasureChanged = listEntryMeasures.get(position)
+            var entryMeasureBeforeChanged = entryMeasureChanged
+            if (position + 1 < listEntryMeasures.size)
+                entryMeasureBeforeChanged = listEntryMeasures.get(position + 1)
 
-            setData(entryMeasure, entryMeasureBefore!!)
+            setData(entryMeasureChanged, entryMeasureBeforeChanged)
         })
 
         floating_action_button_edit.setOnClickListener {
@@ -132,7 +132,7 @@ class MeasuresDetailsDialogFragment : DialogFragment() {
             .setView(mDialogView)
             .setPositiveButton(
                 resources.getString(R.string.ok),
-                DialogInterface.OnClickListener { dialog, which ->
+                DialogInterface.OnClickListener { dialog, _ ->
                     dialog.dismiss()
                 })
         val mAlertDialog = mBuilder.show()
@@ -189,21 +189,18 @@ class MeasuresDetailsDialogFragment : DialogFragment() {
             lyImages.visibility = View.VISIBLE
             if (entryMeasure.frontPhotoUrl.isNotEmpty()) {
                 val bmpFront: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
-                    this.context!!,
                     entryMeasure.frontPhotoUrl
                 )
                 ivFrontImage.setImageBitmap(bmpFront)
             }
             if (entryMeasure.backPhotoUrl.isNotEmpty()) {
                 val bmpBack: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
-                    this.context!!,
                     entryMeasure.backPhotoUrl
                 )
                 ivBackImage.setImageBitmap(bmpBack)
             }
             if (entryMeasure.sidePhotoUrl.isNotEmpty()) {
                 val bmpSide: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
-                    this.context!!,
                     entryMeasure.sidePhotoUrl
                 )
                 ivSideImage.setImageBitmap(bmpSide)

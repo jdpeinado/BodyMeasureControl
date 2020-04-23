@@ -55,8 +55,8 @@ class PreferencesFragment : PreferenceFragmentCompat(),
         }
     }
 
-    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-        val pref: Preference? = key?.let { findPreference(it) }
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, keyString: String?) {
+        val pref: Preference? = keyString?.let { findPreference(it) }
 
         updatePrefSummary(pref)
 
@@ -75,7 +75,7 @@ class PreferencesFragment : PreferenceFragmentCompat(),
                 if (pref is ListPreference) {
                     val key = resources.getString(R.string.height_key)
                     val value = Utils.getRoundNumberDecimal(height.toDouble()/3.28084, 2).toString()
-                    val prefHeight : Preference? = key?.let { findPreference(key) }
+                    val prefHeight : Preference? = key.let { findPreference(key) }
                     if (prefHeight is EditTextPreference) {
                         prefHeight.text = value
                         prefHeight.setSummary(value)
@@ -88,7 +88,7 @@ class PreferencesFragment : PreferenceFragmentCompat(),
                 if (pref is ListPreference) {
                     val key = resources.getString(R.string.height_key)
                     val value = Utils.getRoundNumberDecimal(height.toDouble()*3.28084, 2).toString()
-                    val prefHeight : Preference? = key?.let { findPreference(key) }
+                    val prefHeight : Preference? = key.let { findPreference(key) }
                     if (prefHeight is EditTextPreference) {
                         prefHeight.text = value
                         prefHeight.setSummary(value)

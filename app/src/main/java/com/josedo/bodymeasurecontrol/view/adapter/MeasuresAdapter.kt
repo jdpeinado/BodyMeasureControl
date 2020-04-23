@@ -24,15 +24,15 @@ class MeasuresAdapter(val context: Context, val measuresListener: MeasuresListen
     override fun getItemCount(): Int = listEntryMeasures.size
 
     override fun onBindViewHolder(holder: MeasuresAdapter.ViewHolder, position: Int) {
-        val entryMeasure = listEntryMeasures[position] as EntryMeasure
+        val entryMeasure = listEntryMeasures[position]
 
         val simpleDateFormat = SimpleDateFormat("dd/MM/yyyy")
         holder.tvMeasureDate.text = simpleDateFormat.format(entryMeasure.dateMeasure)
 
-        holder.tvBodyWegihtValue.text = UnitMeasure.fromKgToLbString(this.context!!, entryMeasure.bodyWeightValue)
+        holder.tvBodyWegihtValue.text = UnitMeasure.fromKgToLbString(this.context, entryMeasure.bodyWeightValue)
 
         if(position+1>=listEntryMeasures.size){
-            holder.tvBodyweightDiferrence.text = "+" + UnitMeasure.fromKgToLbString(this.context!!, 0.0)
+            holder.tvBodyweightDiferrence.text = "+" + UnitMeasure.fromKgToLbString(this.context, 0.0)
             holder.tvBodyweightDiferrence.setCompoundDrawablesWithIntrinsicBounds(
                 null, null, null, null
             )
@@ -41,16 +41,16 @@ class MeasuresAdapter(val context: Context, val measuresListener: MeasuresListen
 
             val difference:Double = entryMeasure.bodyWeightValue - entryMeasureBefore.bodyWeightValue
             val v = if(difference>=0.0) "+" else ""
-            holder.tvBodyweightDiferrence.text = v + UnitMeasure.fromKgToLbString(this.context!!, difference)
+            holder.tvBodyweightDiferrence.text = v + UnitMeasure.fromKgToLbString(this.context, difference)
             when {
                 (difference == 0.0) -> holder.tvBodyweightDiferrence.setCompoundDrawablesWithIntrinsicBounds(
                     null, null, null, null
                 )
                 (difference > 0.0) -> holder.tvBodyweightDiferrence.setCompoundDrawablesWithIntrinsicBounds(
-                    context!!.getDrawable(R.drawable.ic_arrow_up), null, null, null
+                    context.getDrawable(R.drawable.ic_arrow_up), null, null, null
                 )
                 (difference < 0.0) -> holder.tvBodyweightDiferrence.setCompoundDrawablesWithIntrinsicBounds(
-                    context!!.getDrawable(R.drawable.ic_arrow_down), null, null, null
+                    context.getDrawable(R.drawable.ic_arrow_down), null, null, null
                 )
             }
         }

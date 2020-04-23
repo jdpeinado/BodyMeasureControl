@@ -75,7 +75,7 @@ enum class UnitMeasure(val value: Int) {
                         R.string.measure_presentation,
                         Utils.getRoundNumberDecimal(data,1).toString(),
                         unitMeasure.getWeightFormat(
-                            context!!
+                            context
                         ))
                 }else {
                     val unitMeasure: UnitMeasure = UnitMeasure.IMPERIAL
@@ -83,7 +83,7 @@ enum class UnitMeasure(val value: Int) {
                         R.string.measure_presentation,
                         Utils.getRoundNumberDecimal(data * 2.20462,1).toString(),
                         unitMeasure.getWeightFormat(
-                            context!!
+                            context
                         ))
                 }
             } else {
@@ -92,7 +92,7 @@ enum class UnitMeasure(val value: Int) {
                     R.string.measure_presentation,
                     Utils.getRoundNumberDecimal(data,1).toString(),
                     unitMeasure.getWeightFormat(
-                        context!!
+                        context
                     )
                 )
             }
@@ -148,7 +148,7 @@ enum class UnitMeasure(val value: Int) {
                         R.string.measure_presentation,
                         Utils.getRoundNumberDecimal(data,1).toString(),
                         unitMeasure.getSizeFormat(
-                            context!!
+                            context
                         ))
                 }else {
                     val unitMeasure: UnitMeasure = UnitMeasure.IMPERIAL
@@ -156,7 +156,7 @@ enum class UnitMeasure(val value: Int) {
                         R.string.measure_presentation,
                         Utils.getRoundNumberDecimal(data / 2.54,1).toString(),
                         unitMeasure.getSizeFormat(
-                            context!!
+                            context
                         ))
                 }
             } else {
@@ -165,7 +165,7 @@ enum class UnitMeasure(val value: Int) {
                     R.string.measure_presentation,
                     Utils.getRoundNumberDecimal(data,1).toString(),
                     unitMeasure.getSizeFormat(
-                        context!!
+                        context
                     )
                 )
             }
