@@ -434,37 +434,30 @@ class DataInputFragment : DialogFragment() {
     private fun checkViewEmpty(): Boolean {
         var isOk: Boolean = true
         if (tietDate.text.toString().isEmpty()) {
-            tietDate.setHint(R.string.message_date_not_enter)
             tietDate.setError(context?.getString(R.string.message_date_not_enter))
             isOk = false
         }
         if (tietWeight.text.toString().isEmpty()) {
-            tietWeight.setHint(R.string.message_weight_not_enter)
             tietWeight.setError(context?.getString(R.string.message_weight_not_enter))
             isOk = false
         }
         if (tietChest.text.toString().isEmpty()) {
-            tietChest.setHint(R.string.message_chest_not_enter)
             tietChest.setError(context?.getString(R.string.message_chest_not_enter))
             isOk = false
         }
         if (tietWaist.text.toString().isEmpty()) {
-            tietWaist.setHint(R.string.message_waist_not_enter)
             tietWaist.setError(context?.getString(R.string.message_waist_not_enter))
             isOk = false
         }
         if (tietHip.text.toString().isEmpty()) {
-            tietHip.setHint(R.string.message_hip_not_enter)
             tietHip.setError(context?.getString(R.string.message_hip_not_enter))
             isOk = false
         }
         if (tietBicep.text.toString().isEmpty()) {
-            tietBicep.setHint(R.string.message_biceps_not_enter)
             tietBicep.setError(context?.getString(R.string.message_biceps_not_enter))
             isOk = false
         }
         if (tietLeg.text.toString().isEmpty()) {
-            tietLeg.setHint(R.string.message_leg_not_enter)
             tietLeg.setError(context?.getString(R.string.message_leg_not_enter))
             isOk = false
         }
