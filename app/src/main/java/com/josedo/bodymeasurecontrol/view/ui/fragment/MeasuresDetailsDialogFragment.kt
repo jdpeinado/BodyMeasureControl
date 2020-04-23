@@ -88,14 +88,18 @@ class MeasuresDetailsDialogFragment : DialogFragment() {
         }
 
         ivFrontImage.setOnClickListener {
-            showDialogImage(ivFrontImage)
+            if(ivFrontImage.getDrawable() != null)
+                showDialogImage(ivFrontImage)
         }
 
         ivBackImage.setOnClickListener {
-            showDialogImage(ivBackImage)
+            if(ivBackImage.getDrawable() != null)
+                showDialogImage(ivBackImage)
         }
+
         ivSideImage.setOnClickListener {
-            showDialogImage(ivSideImage)
+            if(ivSideImage.getDrawable() != null)
+                showDialogImage(ivSideImage)
         }
 
     }
@@ -189,8 +193,6 @@ class MeasuresDetailsDialogFragment : DialogFragment() {
                     entryMeasure.frontPhotoUrl
                 )
                 ivFrontImage.setImageBitmap(bmpFront)
-            } else {
-                ivFrontImage.setImageBitmap(null)
             }
             if (entryMeasure.backPhotoUrl.isNotEmpty()) {
                 val bmpBack: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
@@ -198,8 +200,6 @@ class MeasuresDetailsDialogFragment : DialogFragment() {
                     entryMeasure.backPhotoUrl
                 )
                 ivBackImage.setImageBitmap(bmpBack)
-            } else {
-                ivBackImage.setImageBitmap(null)
             }
             if (entryMeasure.sidePhotoUrl.isNotEmpty()) {
                 val bmpSide: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
@@ -207,8 +207,6 @@ class MeasuresDetailsDialogFragment : DialogFragment() {
                     entryMeasure.sidePhotoUrl
                 )
                 ivSideImage.setImageBitmap(bmpSide)
-            } else {
-                ivSideImage.setImageBitmap(null)
             }
         }
     }

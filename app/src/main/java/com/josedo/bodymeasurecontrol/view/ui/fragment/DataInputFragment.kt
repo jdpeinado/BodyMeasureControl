@@ -282,14 +282,18 @@ class DataInputFragment : DialogFragment() {
         }
 
         ivFrontImage.setOnClickListener {
-            showDialogImage(ivFrontImage)
+            if(ivFrontImage.getDrawable() != null)
+                showDialogImage(ivFrontImage)
         }
 
         ivBackImage.setOnClickListener {
-            showDialogImage(ivBackImage)
+            if(ivBackImage.getDrawable() != null)
+                showDialogImage(ivBackImage)
         }
+
         ivSideImage.setOnClickListener {
-            showDialogImage(ivSideImage)
+            if(ivSideImage.getDrawable() != null)
+                showDialogImage(ivSideImage)
         }
     }
 
@@ -383,7 +387,6 @@ class DataInputFragment : DialogFragment() {
             }else {
                 ivFrontImage.setImageURI(data?.getData())
             }
-
             ivFrontImage.visibility = View.VISIBLE
             ivBackImage.visibility = View.VISIBLE
             ivSideImage.visibility = View.VISIBLE
@@ -397,7 +400,6 @@ class DataInputFragment : DialogFragment() {
             }else {
                 ivBackImage.setImageURI(data?.getData())
             }
-            ivBackImage.setImageURI(data?.getData())
             ivFrontImage.visibility = View.VISIBLE
             ivBackImage.visibility = View.VISIBLE
             ivSideImage.visibility = View.VISIBLE
@@ -411,7 +413,6 @@ class DataInputFragment : DialogFragment() {
             }else {
                 ivSideImage.setImageURI(data?.getData())
             }
-            ivSideImage.setImageURI(data?.getData())
             ivFrontImage.visibility = View.VISIBLE
             ivBackImage.visibility = View.VISIBLE
             ivSideImage.visibility = View.VISIBLE
