@@ -1,0 +1,54 @@
+<resources>
+    //General
+    <string name="app_name">BodyMeasureControl</string>
+    <string name="kg_label">kg</string>
+    <string name="lb_label">lb</string>
+    <string name="cm_label">cm</string>
+    <string name="inch_label">in</string>
+    <string name="weight">Peso</string>
+    <string name="chest">Pecho</string>
+    <string name="hip">Cadera</string>
+    <string name="waist">Abdomen</string>
+    <string name="biceps">Biceps</string>
+    <string name="leg">Pierna</string>
+    <string name="date">Fecha</string>
+    <string name="addMeasurement">Añadir</string>
+    <string name="editMeasurement">Editar</string>
+    <string name="data_title">Datos</string>
+    <string name="message_addnewmeasure">Añadida nueva entrada de medidas…</string>
+    <string name="message_updatenewmeasure">Actualizada entrada de medidas…</string>
+    <string name="message_date_not_enter">Por favor introduzca una fecha</string>
+    <string name="message_weight_not_enter">Por favor introduzca un peso</string>
+    <string name="message_chest_not_enter">Por favor introduzca una medida para el pecho</string>
+    <string name="message_waist_not_enter">Por favor introduzca una medida para el abdomen</string>
+    <string name="message_hip_not_enter">Por favor introduzca una medida para la cadera</string>
+    <string name="message_biceps_not_enter">Por favor introduzca una medida para el bicep</string>
+    <string name="message_leg_not_enter">Por favor introduzca una medida para la pierna</string>
+    <string name="loadFrontImage">Frontal</string>
+    <string name="loadBackImage">Espalda</string>
+    <string name="loadSideImage">Lateral</string>
+    <string name="measureDetails">Detalles</string>
+    <string name="home">Inicio</string>
+    <string name="search">Buscar</string>
+    <string name="ok">OK</string>
+    <string name="loadImages">Carga de imágenes</string>
+    <string name="choose_gallery_camera">Opciones para cargar la imagen</string>
+    <string name="choose_gallery_camera_message">¿De donde quieres cargar la imagen?</string>
+    <string name="gallery">Galeria</string>
+    <string name="camera">Cámara</string>
+    <string name="cancel">Cancelar</string>
+    <string name="error_save_image">Hubo un problema al guardar la imagen…</string>
+    <string name="profile_title">Perfil</string>
+    <string name="measure_presentation">%1$s%2$s</string>
+
+    //Preferences
+    <string name="preferences_title">Preferencias</string>
+    <string name="height_key">height</string>
+    <string name="height_title">Altura</string>
+    <string name="height_default_summary">Introduce la altura</string>
+    <string name="metric_system_key">metric_system</string>
+    <string name="metric_system_title">Sistema de medida</string>
+    <string name="metric_system_default_summary">Por favor seleccione su sistema de medida</string>
+    <string name="imc">IMC</string>
+    <string name="blank_state_home_message">Inserta la primera medida pulsando sobre el botón de abajo!</string>
+</resources>
