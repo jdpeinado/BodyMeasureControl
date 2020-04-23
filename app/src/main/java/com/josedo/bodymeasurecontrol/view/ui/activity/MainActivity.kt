@@ -1,13 +1,6 @@
 package com.josedo.bodymeasurecontrol.view.ui.activity
 
-import android.app.Activity
-import android.content.Context
 import android.os.Bundle
-import android.view.Menu
-import android.view.MotionEvent
-import android.view.View
-import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
@@ -22,6 +15,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(findViewById(R.id.toolbarMain))
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        //supportActionBar?.setIcon(R.mipmap.ic_launcher)
         configNav()
     }
 

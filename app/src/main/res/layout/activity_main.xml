@@ -15,9 +15,14 @@
             android:id="@+id/toolbarMain"
             android:minHeight="?attr/actionBarSize"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="?attr/actionBarSize"
             app:titleTextColor="@android:color/white"
             android:background="?attr/colorPrimary">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:src="@drawable/logo_bodymeasurecontrol"
+                android:adjustViewBounds="true"/>
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>

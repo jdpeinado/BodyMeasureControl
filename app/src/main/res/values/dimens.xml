@@ -3,4 +3,5 @@
     <dimen name="highMeasurementDetail">24sp</dimen>
     <dimen name="normalMeasurementDetail">16sp</dimen>
     <dimen name="smallMeasurementDetail">12sp</dimen>
+    <dimen name="heightLogo">40dp</dimen>
 </resources>
