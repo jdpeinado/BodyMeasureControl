@@ -286,7 +286,6 @@ class HomeFragment : Fragment() {
             set1 = LineDataSet(values, title)
             set1.setDrawIcons(false)
             set1.color = resources.getColor(R.color.colorPrimary)
-            //set1.setCircleColor(resources.getColor(R.color.colorPrimaryDark))
             set1.lineWidth = 2f
             //set1.circleRadius = 3f
             //set1.setDrawCircleHole(false)
@@ -307,7 +306,13 @@ class HomeFragment : Fragment() {
             }*/
 
             set1.setDrawValues(false)
-            set1.setDrawCircles(false)
+            if(viewModel.allEntryMeasures.value?.size==1){
+                set1.setDrawCircles(true)
+                set1.setCircleColor(resources.getColor(R.color.colorPrimaryDark))
+            }else{
+                set1.setDrawCircles(false)
+            }
+
 
             val dataSets = ArrayList<ILineDataSet>()
             dataSets.add(set1) // add the data sets
