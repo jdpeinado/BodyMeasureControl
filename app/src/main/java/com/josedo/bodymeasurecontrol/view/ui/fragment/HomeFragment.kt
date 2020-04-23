@@ -58,8 +58,11 @@ class HomeFragment : Fragment() {
 
         viewModel.allEntryMeasures.observe(viewLifecycleOwner, Observer { listEntryMeasure ->
             if (listEntryMeasure.size == 0) {
-
+                lyContent.visibility = View.GONE
+                tvNoDataMessage.visibility = View.VISIBLE
             } else {
+                lyContent.visibility = View.VISIBLE
+                tvNoDataMessage.visibility = View.GONE
 
                 val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
                 val height = prefs.getString(

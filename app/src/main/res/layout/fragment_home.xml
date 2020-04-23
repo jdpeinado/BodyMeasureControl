@@ -7,7 +7,23 @@
     android:background="@color/backgroundGrey"
     tools:context=".view.ui.fragment.HomeFragment">
 
+    <TextView
+        android:id="@+id/tvNoDataMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center_vertical"
+        android:text="@string/blank_state_home_message"
+        android:textSize="@dimen/highMeasurementDetail"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <ScrollView
+        android:id="@+id/lyContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp">
@@ -29,8 +45,8 @@
                 android:id="@+id/lyIMC"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center">
+                android:layout_gravity="center"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -42,11 +58,11 @@
                     android:id="@+id/tvIMC"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="22.5"
                     android:layout_marginStart="5dp"
-                    android:textStyle="bold"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/highMeasurementDetail" />
+                    android:textSize="@dimen/highMeasurementDetail"
+                    android:textStyle="bold"
+                    tools:text="22.5" />
             </LinearLayout>
 
 

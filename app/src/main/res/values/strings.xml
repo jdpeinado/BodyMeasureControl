@@ -50,4 +50,5 @@
     <string name="metric_system_title">Sistema de medida</string>
     <string name="metric_system_default_summary">Por favor seleccione su sistema de medida</string>
     <string name="imc">IMC</string>
+    <string name="blank_state_home_message">Inserta la primera medida pulsando sobre el botón de abajo!</string>
 </resources>

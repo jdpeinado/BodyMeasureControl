@@ -1,35 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.ui.fragment.MeasuresFragment"
-    android:background="@color/backgroundGrey">
+    android:background="@color/backgroundGrey"
+    tools:context=".view.ui.fragment.MeasuresFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvMeasures"
+    <TextView
+        android:id="@+id/tvNoDataMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/blank_state_home_message"
+        android:textSize="@dimen/highMeasurementDetail"
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:layout_margin="5dp"
+        android:layout_gravity="center"/>
+
+    <FrameLayout
+        android:id="@+id/flContent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="visible">
 
-    <RelativeLayout
-        android:id="@+id/rlBaseMeasures"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <View
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMeasures"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
-            android:alpha="0.3"/>
+            android:layout_height="match_parent" />
 
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"/>
+        <RelativeLayout
+            android:id="@+id/rlBaseMeasures"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.3"
+                android:background="@color/colorPrimary" />
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true" />
+
+        </RelativeLayout>
+    </FrameLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_action_button"

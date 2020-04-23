@@ -100,7 +100,14 @@ class MeasuresFragment : Fragment(), MeasuresListener {
 
     fun observeViewModel() {
         viewModel.allEntryMeasures.observe(viewLifecycleOwner, Observer {
-            measuresAdapter.updateData(it)
+            if (it.size == 0) {
+                flContent.visibility = View.GONE
+                tvNoDataMessage.visibility = View.VISIBLE
+            } else {
+                flContent.visibility = View.VISIBLE
+                tvNoDataMessage.visibility = View.GONE
+                measuresAdapter.updateData(it)
+            }
         })
 
         viewModel.isLoading.observe(viewLifecycleOwner, Observer<Boolean> {
