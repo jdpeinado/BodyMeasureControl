@@ -64,9 +64,9 @@ abstract class EntryMeasureRoomDatabase : RoomDatabase() {
         }
 
         suspend fun populateDatabase(entryMeasureDAO: EntryMeasureDAO, context: Context) {
-            entryMeasureDAO.deleteAll()
+            //entryMeasureDAO.deleteAll()
 
-            try {
+            /*try {
                 val inputStream: InputStream = context.getAssets().open("data.csv")
 
                 val reader = CSVReaderBuilder(InputStreamReader(inputStream)).withCSVParser(
@@ -149,7 +149,7 @@ abstract class EntryMeasureRoomDatabase : RoomDatabase() {
             } catch (ex: Exception) {
                 ex.printStackTrace()
                 Log.d("populateDatabase", ex.message)
-            }
+            }*/
 
             /*var entryMeasure: EntryMeasure = EntryMeasure(Date(), "","","",UnitMeasure.METRIC, 102f,87f,89f,58f,32f,76.1f)
             entryMeasureDAO.insert(entryMeasure)
