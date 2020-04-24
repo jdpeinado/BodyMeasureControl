@@ -71,7 +71,7 @@ class MeasuresDetailsDialogFragment : DialogFragment() {
 
         setData(entryMeasure, entryMeasureBefore!!)
 
-        viewModel.allEntryMeasures.observe(viewLifecycleOwner, Observer {listEntryMeasures ->
+        viewModel.allEntryMeasures.observe(viewLifecycleOwner, Observer { listEntryMeasures ->
             val entryMeasureChanged = listEntryMeasures.get(position)
             var entryMeasureBeforeChanged = entryMeasureChanged
             if (position + 1 < listEntryMeasures.size)
@@ -88,18 +88,30 @@ class MeasuresDetailsDialogFragment : DialogFragment() {
         }
 
         ivFrontImage.setOnClickListener {
-            if(ivFrontImage.getDrawable() != null)
-                showDialogImage(ivFrontImage)
+            if (ivFrontImage.getDrawable() != null)
+                viewModel.allEntryMeasures.value?.get(position)?.frontPhotoUrl?.let { it1 ->
+                    showDialogImage(
+                        it1
+                    )
+                }
         }
 
         ivBackImage.setOnClickListener {
-            if(ivBackImage.getDrawable() != null)
-                showDialogImage(ivBackImage)
+            if (ivBackImage.getDrawable() != null)
+                viewModel.allEntryMeasures.value?.get(position)?.backPhotoUrl?.let { it1 ->
+                    showDialogImage(
+                        it1
+                    )
+                }
         }
 
         ivSideImage.setOnClickListener {
-            if(ivSideImage.getDrawable() != null)
-                showDialogImage(ivSideImage)
+            if (ivSideImage.getDrawable() != null)
+                viewModel.allEntryMeasures.value?.get(position)?.sidePhotoUrl?.let { it1 ->
+                    showDialogImage(
+                        it1
+                    )
+                }
         }
 
     }
@@ -126,7 +138,7 @@ class MeasuresDetailsDialogFragment : DialogFragment() {
         )
     }
 
-    private fun showDialogImage(imageView: ImageView) {
+    private fun showDialogImage(urlImage: String) {
         val mDialogView = LayoutInflater.from(this.context).inflate(R.layout.dialog_image, null)
         val mBuilder = AlertDialog.Builder(this.context)
             .setView(mDialogView)
@@ -137,7 +149,10 @@ class MeasuresDetailsDialogFragment : DialogFragment() {
                 })
         val mAlertDialog = mBuilder.show()
         mAlertDialog.setCanceledOnTouchOutside(true)
-        mDialogView.ivPhoto.setImageBitmap((imageView.getDrawable() as BitmapDrawable).bitmap)
+        val bmpFront: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
+            urlImage
+        )
+        mDialogView.ivPhoto.setImageBitmap(bmpFront)
     }
 
     private fun setData(entryMeasure: EntryMeasure?, entryMeasureBefore: EntryMeasure) {
@@ -188,22 +203,43 @@ class MeasuresDetailsDialogFragment : DialogFragment() {
         } else {
             lyImages.visibility = View.VISIBLE
             if (entryMeasure.frontPhotoUrl.isNotEmpty()) {
-                val bmpFront: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
-                    entryMeasure.frontPhotoUrl
-                )
-                ivFrontImage.setImageBitmap(bmpFront)
+                try {
+                    val bmpFront: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
+                        ImageStorageManager.getThumbnailFilename(entryMeasure.frontPhotoUrl)
+                    )
+                    ivFrontImage.setImageBitmap(bmpFront)
+                } catch (ex: Exception) {
+                    ex.printStackTrace()
+                }
+            } else {
+                if (ivFrontImage.drawable != null)
+                    ivFrontImage.setImageResource(0)
             }
             if (entryMeasure.backPhotoUrl.isNotEmpty()) {
-                val bmpBack: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
-                    entryMeasure.backPhotoUrl
-                )
-                ivBackImage.setImageBitmap(bmpBack)
+                try {
+                    val bmpBack: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
+                        ImageStorageManager.getThumbnailFilename(entryMeasure.backPhotoUrl)
+                    )
+                    ivBackImage.setImageBitmap(bmpBack)
+                } catch (ex: Exception) {
+                    ex.printStackTrace()
+                }
+            } else {
+                if (ivBackImage.drawable != null)
+                    ivBackImage.setImageResource(0)
             }
             if (entryMeasure.sidePhotoUrl.isNotEmpty()) {
-                val bmpSide: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
-                    entryMeasure.sidePhotoUrl
-                )
-                ivSideImage.setImageBitmap(bmpSide)
+                try {
+                    val bmpSide: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
+                        ImageStorageManager.getThumbnailFilename(entryMeasure.sidePhotoUrl)
+                    )
+                    ivSideImage.setImageBitmap(bmpSide)
+                } catch (ex: Exception) {
+                    ex.printStackTrace()
+                }
+            } else {
+                if (ivSideImage.drawable != null)
+                    ivSideImage.setImageResource(0)
             }
         }
     }

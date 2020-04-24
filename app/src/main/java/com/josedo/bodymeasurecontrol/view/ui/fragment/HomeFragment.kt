@@ -5,12 +5,10 @@ import android.content.DialogInterface
 import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.Color
-import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -31,7 +29,6 @@ import com.josedo.bodymeasurecontrol.util.Utils
 import com.josedo.bodymeasurecontrol.viewmodel.ShareViewModel
 import kotlinx.android.synthetic.main.dialog_image.view.*
 import kotlinx.android.synthetic.main.fragment_home.*
-import net.cachapa.expandablelayout.ExpandableLayout
 import java.text.SimpleDateFormat
 
 /**
@@ -64,7 +61,8 @@ class HomeFragment : Fragment() {
                 lyContent.visibility = View.VISIBLE
                 tvNoDataMessage.visibility = View.GONE
 
-                val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+                val prefs: SharedPreferences =
+                    PreferenceManager.getDefaultSharedPreferences(context)
                 val height = prefs.getString(
                     context?.getString(R.string.height_key),
                     null
@@ -81,18 +79,24 @@ class HomeFragment : Fragment() {
                     entryMeasureBefore = listEntryMeasure[listEntryMeasure.size - 1]
 
                 try {
-                    if(metric_system != null && height!=null) {
-                        if (metric_system.toInt().equals(UnitMeasure.METRIC.value)){
-                            val imc = Utils.getRoundNumberDecimal(entryMeasure.bodyWeightValue / (height.toDouble()*height.toDouble()),1)
-                            tvIMC.text= imc.toString()
-                        }else{
+                    if (metric_system != null && height != null) {
+                        if (metric_system.toInt().equals(UnitMeasure.METRIC.value)) {
+                            val imc = Utils.getRoundNumberDecimal(
+                                entryMeasure.bodyWeightValue / (height.toDouble() * height.toDouble()),
+                                1
+                            )
+                            tvIMC.text = imc.toString()
+                        } else {
                             val correctUnitMeasure = height.toDouble() / 3.28084
-                            val imc = Utils.getRoundNumberDecimal(entryMeasure.bodyWeightValue / (correctUnitMeasure*correctUnitMeasure),1)
-                            tvIMC.text= imc.toString()
+                            val imc = Utils.getRoundNumberDecimal(
+                                entryMeasure.bodyWeightValue / (correctUnitMeasure * correctUnitMeasure),
+                                1
+                            )
+                            tvIMC.text = imc.toString()
                         }
-                    }else
+                    } else
                         lyIMC.visibility = View.GONE
-                } catch (ex: Exception){
+                } catch (ex: Exception) {
                     lyIMC.visibility = View.GONE
                 }
 
@@ -107,31 +111,39 @@ class HomeFragment : Fragment() {
                     v + UnitMeasure.fromKgToLbString(this.context!!, difference)
                 setArrow(difference, tvMeasurementDifference)
 
-                tvChestValue.text = UnitMeasure.fromCmToInString(this.context!!, entryMeasure.chestValue)
+                tvChestValue.text =
+                    UnitMeasure.fromCmToInString(this.context!!, entryMeasure.chestValue)
                 difference = entryMeasure.chestValue - entryMeasureBefore.chestValue
                 v = if (difference >= 0.0) "+" else ""
-                tvChestDifference.text = v + UnitMeasure.fromCmToInString(this.context!!, difference)
+                tvChestDifference.text =
+                    v + UnitMeasure.fromCmToInString(this.context!!, difference)
                 setArrow(difference, tvChestDifference)
 
-                tvWaistValue.text = UnitMeasure.fromCmToInString(this.context!!, entryMeasure.waistValue)
+                tvWaistValue.text =
+                    UnitMeasure.fromCmToInString(this.context!!, entryMeasure.waistValue)
                 difference = entryMeasure.waistValue - entryMeasureBefore.waistValue
                 v = if (difference >= 0.0) "+" else ""
-                tvWaistDifference.text = v + UnitMeasure.fromCmToInString(this.context!!, difference)
+                tvWaistDifference.text =
+                    v + UnitMeasure.fromCmToInString(this.context!!, difference)
                 setArrow(difference, tvWaistDifference)
 
-                tvHipValue.text = UnitMeasure.fromCmToInString(this.context!!, entryMeasure.hipValue)
+                tvHipValue.text =
+                    UnitMeasure.fromCmToInString(this.context!!, entryMeasure.hipValue)
                 difference = entryMeasure.hipValue - entryMeasureBefore.hipValue
                 v = if (difference >= 0.0) "+" else ""
                 tvHipDifference.text = v + UnitMeasure.fromCmToInString(this.context!!, difference)
                 setArrow(difference, tvHipDifference)
 
-                tvBicepValue.text = UnitMeasure.fromCmToInString(this.context!!, entryMeasure.bicepValue)
+                tvBicepValue.text =
+                    UnitMeasure.fromCmToInString(this.context!!, entryMeasure.bicepValue)
                 difference = entryMeasure.bicepValue - entryMeasureBefore.bicepValue
                 v = if (difference >= 0.0) "+" else ""
-                tvBicepDifference.text = v + UnitMeasure.fromCmToInString(this.context!!, difference)
+                tvBicepDifference.text =
+                    v + UnitMeasure.fromCmToInString(this.context!!, difference)
                 setArrow(difference, tvBicepDifference)
 
-                tvLegValue.text = UnitMeasure.fromCmToInString(this.context!!, entryMeasure.legValue)
+                tvLegValue.text =
+                    UnitMeasure.fromCmToInString(this.context!!, entryMeasure.legValue)
                 difference = entryMeasure.legValue - entryMeasureBefore.legValue
                 v = if (difference >= 0.0) "+" else ""
                 tvLegDifference.text = v + UnitMeasure.fromCmToInString(this.context!!, difference)
@@ -142,22 +154,43 @@ class HomeFragment : Fragment() {
                 } else {
                     lyImages.visibility = View.VISIBLE
                     if (entryMeasure.frontPhotoUrl.isNotEmpty()) {
-                        val bmpFront: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
-                            entryMeasure.frontPhotoUrl
-                        )
-                        ivFrontImage.setImageBitmap(bmpFront)
+                        try {
+                            val bmpFront: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
+                                ImageStorageManager.getThumbnailFilename(entryMeasure.frontPhotoUrl)
+                            )
+                            ivFrontImage.setImageBitmap(bmpFront)
+                        } catch (ex: Exception) {
+                            ex.printStackTrace()
+                        }
+                    } else {
+                        if (ivFrontImage.drawable != null)
+                            ivFrontImage.setImageResource(0)
                     }
                     if (entryMeasure.backPhotoUrl.isNotEmpty()) {
-                        val bmpBack: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
-                            entryMeasure.backPhotoUrl
-                        )
-                        ivBackImage.setImageBitmap(bmpBack)
+                        try {
+                            val bmpBack: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
+                                ImageStorageManager.getThumbnailFilename(entryMeasure.backPhotoUrl)
+                            )
+                            ivBackImage.setImageBitmap(bmpBack)
+                        } catch (ex: Exception) {
+                            ex.printStackTrace()
+                        }
+                    } else {
+                        if (ivBackImage.drawable != null)
+                            ivBackImage.setImageResource(0)
                     }
                     if (entryMeasure.sidePhotoUrl.isNotEmpty()) {
-                        val bmpSide: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
-                            entryMeasure.sidePhotoUrl
-                        )
-                        ivSideImage.setImageBitmap(bmpSide)
+                        try {
+                            val bmpSide: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
+                                ImageStorageManager.getThumbnailFilename(entryMeasure.sidePhotoUrl)
+                            )
+                            ivSideImage.setImageBitmap(bmpSide)
+                        } catch (ex: Exception) {
+                            ex.printStackTrace()
+                        }
+                    } else {
+                        if (ivSideImage.drawable != null)
+                            ivSideImage.setImageResource(0)
                     }
                 }
 
@@ -171,7 +204,12 @@ class HomeFragment : Fragment() {
                 var cont = 0
                 for (i in viewModel.allEntryMeasures.value?.size!! - 1 downTo 0) {
                     val entryMeasureToAdd = viewModel.allEntryMeasures.value!!.get(i)
-                    valuesWeight.add(Entry(cont.toFloat(), entryMeasureToAdd.bodyWeightValue.toFloat()))
+                    valuesWeight.add(
+                        Entry(
+                            cont.toFloat(),
+                            entryMeasureToAdd.bodyWeightValue.toFloat()
+                        )
+                    )
                     valuesChest.add(Entry(cont.toFloat(), entryMeasureToAdd.chestValue.toFloat()))
                     valuesWaist.add(Entry(cont.toFloat(), entryMeasureToAdd.waistValue.toFloat()))
                     valuesHip.add(Entry(cont.toFloat(), entryMeasureToAdd.hipValue.toFloat()))
@@ -196,23 +234,35 @@ class HomeFragment : Fragment() {
         }
 
         ivFrontImage.setOnClickListener {
-            if(ivFrontImage.getDrawable() != null)
-                showDialogImage(ivFrontImage)
+            if (ivFrontImage.getDrawable() != null)
+                viewModel.allEntryMeasures.value?.get(0)?.frontPhotoUrl?.let { it1 ->
+                    showDialogImage(
+                        it1
+                    )
+                }
         }
 
         ivBackImage.setOnClickListener {
-            if(ivBackImage.getDrawable() != null)
-                showDialogImage(ivBackImage)
+            if (ivBackImage.getDrawable() != null)
+                viewModel.allEntryMeasures.value?.get(0)?.backPhotoUrl?.let { it1 ->
+                    showDialogImage(
+                        it1
+                    )
+                }
         }
 
         ivSideImage.setOnClickListener {
-            if(ivSideImage.getDrawable() != null)
-                showDialogImage(ivSideImage)
+            if (ivSideImage.getDrawable() != null)
+                viewModel.allEntryMeasures.value?.get(0)?.sidePhotoUrl?.let { it1 ->
+                    showDialogImage(
+                        it1
+                    )
+                }
         }
 
     }
 
-    private fun showDialogImage(imageView: ImageView) {
+    private fun showDialogImage(urlImage: String) {
         val mDialogView = LayoutInflater.from(this.context).inflate(R.layout.dialog_image, null)
         val mBuilder = AlertDialog.Builder(this.context)
             .setView(mDialogView)
@@ -223,7 +273,11 @@ class HomeFragment : Fragment() {
                 })
         val mAlertDialog = mBuilder.show()
         mAlertDialog.setCanceledOnTouchOutside(true)
-        mDialogView.ivPhoto.setImageBitmap((imageView.getDrawable() as BitmapDrawable).bitmap)
+        val bmpFront: Bitmap? = ImageStorageManager.getImageFromInternalStorage(
+            urlImage
+        )
+        mDialogView.ivPhoto.setImageBitmap(bmpFront)
+        //mDialogView.ivPhoto.setImageBitmap((imageView.getDrawable() as BitmapDrawable).bitmap)
     }
 
     private fun setChart(chart: LineChart, values: ArrayList<Entry>) {
@@ -277,6 +331,12 @@ class HomeFragment : Fragment() {
             set1.notifyDataSetChanged()
             chart.getData().notifyDataChanged()
             chart.notifyDataSetChanged()
+            if (viewModel.allEntryMeasures.value?.size == 1) {
+                set1.setDrawCircles(true)
+                set1.setCircleColor(resources.getColor(R.color.colorPrimaryDark))
+            } else {
+                set1.setDrawCircles(false)
+            }
         } else {
             set1 = LineDataSet(values, title)
             set1.setDrawIcons(false)
@@ -301,10 +361,10 @@ class HomeFragment : Fragment() {
             }*/
 
             set1.setDrawValues(false)
-            if(viewModel.allEntryMeasures.value?.size==1){
+            if (viewModel.allEntryMeasures.value?.size == 1) {
                 set1.setDrawCircles(true)
                 set1.setCircleColor(resources.getColor(R.color.colorPrimaryDark))
-            }else{
+            } else {
                 set1.setDrawCircles(false)
             }
 
